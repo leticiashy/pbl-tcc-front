@@ -7,13 +7,15 @@
       "CREATE_ACCOUNT_BTN": "Criar uma conta",
       "EMAILPLACEHOLDER": "Digite seu endereço de e-mail ",
       "PASSWORDPLACEHOLDER": "Digite sua senha",
-      "USERNAMEPLACEHOLDER": "Digite seu nome completo"
+      "NAMEPLACEHOLDER": "Digite seu nome completo",
+      "USERNAMEPLACEHOLDER": "Digite um apelido de acesso"
     },
     "LABEL": {
       "EMAIL": "Email",
       "PASSWORD": "Senha",
       "PASSWORD_DUPLICATE": "Repita sua senha",
-      "USERNAME": "Nome completo"
+      "NAME": "Nome completo",
+      "USERNAME": "Apelido"
     }
   }
 }

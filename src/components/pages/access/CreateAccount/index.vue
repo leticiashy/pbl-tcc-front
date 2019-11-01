@@ -16,6 +16,17 @@
 
           <v-flex>
             <v-text-field
+              :label="$t('CREATE_ACCOUNT.LABEL.NAME')"
+              v-model="login.name"
+              :placeholder="$t('CREATE_ACCOUNT.FORM.NAMEPLACEHOLDER')"
+              name="name"
+              id="name"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-flex>
+
+          <v-flex>
+            <v-text-field
               :label="$t('CREATE_ACCOUNT.LABEL.USERNAME')"
               v-model="login.username"
               :placeholder="$t('CREATE_ACCOUNT.FORM.USERNAMEPLACEHOLDER')"
@@ -24,6 +35,7 @@
               :rules="[rules.required]"
             ></v-text-field>
           </v-flex>
+
           <v-flex>
             <v-text-field
               :label="$t('CREATE_ACCOUNT.LABEL.EMAIL')"
