@@ -1,0 +1,15 @@
+{
+  "LOGIN": {
+    "FORM": {
+      "TITLE": "Iniciar sesión",
+      "SUBMIT": "Entrar",
+      "FORGOT_PASSWORD_BTN": "Olvidé mi contraseña",
+      "EMAILPLACEHOLDER": "Escriba su direccion de correo electronico",
+      "PASSWORDPLACEHOLDER": "Escribe tu contraseña"
+    },
+    "LABEL": {
+      "EMAIL": "Email",
+      "PASSWORD": "Contraseña"
+    }
+  }
+}

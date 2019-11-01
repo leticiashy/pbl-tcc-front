@@ -1,0 +1,27 @@
+{
+  "GLOBAL": {
+    "MAIN_PAGES": "Main pages",
+    "DASHBOARD": "Dashboard",
+    "LOGOUT": "Log out",
+    "PLACEHOLDER": "DD/MM/YYYY",
+    "DATE_FORMAT": "DD/MM/YYYY",
+    "DATE_MASK": "##/##/####",
+    "LANG_ENGLISH": "English (US)",
+    "LANG_ENGLISH_UK": "English (UK)",
+    "LANG_PORTUGUESE": "Português",
+    "LANG_SPANISH": "Español",
+    "LANG_GERMAN": "Deutsche",
+    "LANG_FRENCH": "Français",
+    "EMAIL": "E-mail",
+    "TASKS": "Tasks",
+    "ISSUES": "Issues",
+    "COMPANIES": "Companies",
+    "NAME": "Name",
+    "ID": "Id",
+    "CREATED_AT": "Created at",
+    "SUCCESS": "Success",
+    "ERROR": "Error",
+    "WARNING": "Attention",
+    "INFORMATION": "Information"
+  }
+}

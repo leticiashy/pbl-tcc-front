@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="author" content="João Marcus de Lemos Fernandes" />
+    <link rel="shortcut icon" href="/src/assets/img/favicon.ico" />
+    <title>PBL - Front-end</title>
+    <meta name="description" content="Front template for Vue" />
+    <meta
+      name="keywords"
+      content="admin, dashboard, webapp, template, responsive,  bootstrap, app, widgets, premium, vue, vuetify, chartsjs"
+    />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    />
+    <link rel="stylesheet" href="src/assets/icons/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="src/assets/icons/themify-icons/themify-icons.css" />
+    <link rel="stylesheet" href="src/assets/css/style.css" />
+  </head>
+
+  <body>
+    <noscript>
+      <!-- TODO: Change text -->
+      <strong>Please, enable JS.</strong>
+    </noscript>
+
+    <div id="app"></div>
+
+    <div id="banner"></div>
+
+    <script language="JavaScript">
+      /* Aparece mensagem no IE */
+      var banner = document.getElementById("banner");
+      var trident = {
+        string: window.navigator.userAgent.match(/Trident\/(\d+)/)
+      };
+
+      trident.version = trident.string ? parseInt(trident.string[1], 10) : null;
+      if ((trident.version !== null && trident.version <= 11) || window.navigator.userAgent.indexOf("Edge") !== -1) {
+        /* Tradução do banner */
+        var browserLang = (navigator.language || navigator.userLanguage || "").split(/[-_]+/)[0];
+
+        var availableLangs = ["en", "es", "uk", "pt"];
+
+        var currentLang = "";
+
+        var langsOrder = [browserLang, "en"];
+
+        for (var i = 0; i < langsOrder.length; i++) {
+          if (availableLangs.indexOf(langsOrder[i])) {
+            currentLang = langsOrder[i];
+            break;
+          }
+        }
+
+        if (currentLang === "pt") {
+          banner.innerHTML =
+            '<div class="alert">Algumas ferramentas não estarão disponíveis para este navegador. <span class="button-close" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;">X</span></div>';
+        } else if (currentLang === "es") {
+          banner.innerHTML =
+            '<div class="alert">Algunas herramientas no estarán disponibles para este navegador. <span class="button-close" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;">X</span></div>';
+        } else {
+          banne1r.innerHTML =
+            '<div class="alert">Some tools will not be available for this browser. <span class="button-close" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;">X</span></div>';
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "GLOBAL_ERROR": {
+    "NO_DATA": "Datos no encontrados",
+    "REPORT_DATE_AFTER_END": "La fecha inicial debe ser anterior a la fecha de finalización ",
+    "REQUIRED": "Necesario",
+    "CPF": "Número de Seguro Social no válido ",
+    "CNPJ": "Registro nacional no válido de personas jurídicas ",
+    "EMAIL": "Email inválido",
+    "DOCUMENT_FORMAT": "Formato de documento no válido ",
+    "RESERVATION_NOT_FOUND": "No se encontraron reservas ",
+    "DUPLICATE_ID": "Los ID deben ser únicos ",
+    "DDD": "DDD inválido ",
+    "MAX_VAL": "Este campo tiene un valor máximo ",
+    "MIN_VAL": "Este campo tiene un valor mínimo ",
+    "INVALID_PHONE_NUMBER": "Número invalido",
+    "NO_GROUP_ERROR": "No se encontró grupo "
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "LOGIN": {
+    "FORM": {
+      "TITLE": "Login",
+      "SUBMIT": "Entrar",
+      "FORGOT_PASSWORD_BTN": "Esqueci minha senha",
+      "EMAILPLACEHOLDER": "Digite seu endereço de e-mail ",
+      "PASSWORDPLACEHOLDER": "Digite sua senha"
+    },
+    "LABEL": {
+      "EMAIL": "Email",
+      "PASSWORD": "Senha"
+    }
+  }
+}

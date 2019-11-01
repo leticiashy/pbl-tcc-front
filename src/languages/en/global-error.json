@@ -1,0 +1,18 @@
+{
+  "GLOBAL_ERROR": {
+    "NO_DATA": "No data found",
+    "REPORT_DATE_AFTER_END": "Initial date must be before end date",
+    "REQUIRED": "Required",
+    "CPF": "Invalid Social Security Number",
+    "CNPJ": "Invalid National Registry of Legal Entities",
+    "EMAIL": "Invalid email",
+    "DOCUMENT_FORMAT": "Invalid document format",
+    "RESERVATION_NOT_FOUND": "No reservations found",
+    "DUPLICATE_ID": "Ids must be unique",
+    "DDD": "Invalid DDD",
+    "MAX_VAL": "This field has max value",
+    "MIN_VAL": "This field has min value",
+    "INVALID_PHONE_NUMBER": "Invalid number",
+    "NO_GROUP_ERROR": "No group found"
+  }
+}

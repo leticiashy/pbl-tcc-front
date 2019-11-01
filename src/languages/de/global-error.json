@@ -1,0 +1,18 @@
+{
+  "GLOBAL_ERROR": {
+    "NO_DATA": "Keine Daten gefunden",
+    "REPORT_DATE_AFTER_END": "Das Anfangsdatum muss vor dem Enddatum liegen ",
+    "REQUIRED": "Erforderlich",
+    "CPF": "Ungültige Sozialversicherungsnummer ",
+    "CNPJ": "Ungültiges nationales Register der juristischen Personen ",
+    "EMAIL": "Ungültige E-Mail",
+    "DOCUMENT_FORMAT": "Ungültiges Dokumentformat ",
+    "RESERVATION_NOT_FOUND": "Keine Reservierungen gefunden ",
+    "DUPLICATE_ID": "IDs müssen eindeutig sein ",
+    "DDD": "Ungültiges DDD ",
+    "MAX_VAL": "Dieses Feld hat einen Maximalwert ",
+    "MIN_VAL": "Dieses Feld hat einen Mindestwert ",
+    "INVALID_PHONE_NUMBER": "Ungültige Nummer",
+    "NO_GROUP_ERROR": "Keine Gruppe gefunden "
+  }
+}
