@@ -6,7 +6,7 @@
           <v-layout row>
             <v-flex>
               <h3 class="title-login title is-3 has-text-right">
-                {{ $t("LOGIN.FORM.TITLE") }}
+                {{ $t("CREATE_ACCOUNT.FORM.TITLE") }}
               </h3>
             </v-flex>
             <v-flex shrink>
@@ -16,9 +16,19 @@
 
           <v-flex>
             <v-text-field
-              :label="$t('LOGIN.LABEL.EMAIL')"
+              :label="$t('CREATE_ACCOUNT.LABEL.USERNAME')"
+              v-model="login.username"
+              :placeholder="$t('CREATE_ACCOUNT.FORM.USERNAMEPLACEHOLDER')"
+              name="username"
+              id="username"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-flex>
+          <v-flex>
+            <v-text-field
+              :label="$t('CREATE_ACCOUNT.LABEL.EMAIL')"
               v-model="login.email"
-              :placeholder="$t('LOGIN.FORM.EMAILPLACEHOLDER')"
+              :placeholder="$t('CREATE_ACCOUNT.FORM.EMAILPLACEHOLDER')"
               name="email"
               id="email"
               :rules="[rules.required, rules.email]"
@@ -27,48 +37,54 @@
 
           <v-flex>
             <v-text-field
-              :label="$t('LOGIN.LABEL.PASSWORD')"
+              :label="$t('CREATE_ACCOUNT.LABEL.PASSWORD')"
               v-model="login.password"
-              :placeholder="$t('LOGIN.FORM.PASSWORDPLACEHOLDER')"
+              :placeholder="$t('CREATE_ACCOUNT.FORM.PASSWORDPLACEHOLDER')"
               name="password"
               id="password"
               type="password"
               :rules="[rules.required]"
             ></v-text-field>
+
+            <v-text-field
+              :label="$t('CREATE_ACCOUNT.LABEL.PASSWORD')"
+              v-model="login.password_dupl"
+              :placeholder="$t('CREATE_ACCOUNT.FORM.PASSWORDPLACEHOLDER')"
+              name="password"
+              id="password"
+              type="password"
+              :rules="[
+                rules.required,
+                val => val === login.password || $t('GLOBAL_ERROR.PASSWORD')
+              ]"
+            ></v-text-field>
           </v-flex>
         </v-layout>
+
+        <div v-if="errors.length > 0">
+          <v-alert
+            v-for="error in errors"
+            v-bind:key="error"
+            border="top"
+            color="red lighten-2"
+            dark
+            style="display: block"
+          >
+            {{ error }}
+          </v-alert>
+        </div>
 
         <v-layout row wrap justify-end>
           <v-btn dark large color="green" type="submit" :loading="loading > 0">
-            {{ $t("LOGIN.FORM.SUBMIT") }}
+            {{ $t("CREATE_ACCOUNT.FORM.SUBMIT") }}
           </v-btn>
-        </v-layout>
-
-        <v-layout row justify-end>
-          <v-flex pa-1>
-            <a
-              class="button is-text is-small align-right"
-              href="/create-account"
-            >
-              <h6 class="is-4 password">
-                {{ $t("LOGIN.FORM.CREATE_ACCOUNT_BTN") }}
-              </h6>
-            </a>
-          </v-flex>
-          <v-flex shrink pa-1>
-            <a class="button is-text is-small" href="/forgot-password">
-              <h6 class="is-4 password">
-                {{ $t("LOGIN.FORM.FORGOT_PASSWORD_BTN") }}
-              </h6>
-            </a>
-          </v-flex>
         </v-layout>
       </v-container>
     </v-form>
   </v-container>
 </template>
 
-<script src="./Login.js" />
+<script src="./CreateAccount.js" />
 
 <style scoped>
 .title-login {
@@ -79,7 +95,7 @@
 }
 .login-wrapper {
   max-width: 500px;
-  height: 370px;
+  height: calc(auto + 30px);
   background: #fafafa;
   justify-content: center;
   align-items: center;

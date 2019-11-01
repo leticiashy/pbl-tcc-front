@@ -52,7 +52,15 @@ export default class AuthService {
 
         this.setCurrentUser(user);
 
-        return user
+        return user;
+      });
+  }
+
+  create(email, password, username) {
+    return this.apiClient
+      .post("users", { email, password, username })
+      .then((user = ANONYMOUS_USER) => {
+        return user;
       });
   }
 

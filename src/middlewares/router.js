@@ -7,6 +7,7 @@ import Internal from "@/components/master/Internal";
 
 import Dashboard from "@/components/pages/dashboard/Dashboard";
 import Login from "@/components/pages/access/Login";
+import CreateAccount from "@/components/pages/access/CreateAccount";
 
 import store from "@/middlewares/store";
 
@@ -26,6 +27,11 @@ const router = new Router({
           path: "/login",
           name: "login",
           component: Login
+        },
+        {
+          path: "/create-account",
+          name: "create-account",
+          component: CreateAccount
         },
         {
           path: "/",
