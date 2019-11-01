@@ -47,7 +47,7 @@
             ></v-text-field>
 
             <v-text-field
-              :label="$t('CREATE_ACCOUNT.LABEL.PASSWORD')"
+              :label="$t('CREATE_ACCOUNT.LABEL.PASSWORD_DUPLICATE')"
               v-model="login.password_dupl"
               :placeholder="$t('CREATE_ACCOUNT.FORM.PASSWORDPLACEHOLDER')"
               name="password"

@@ -1,0 +1,19 @@
+{
+  "CREATE_ACCOUNT": {
+    "FORM": {
+      "TITLE": "Criar um novo perfil",
+      "SUBMIT": "Criar",
+      "FORGOT_PASSWORD_BTN": "Esqueci minha senha",
+      "CREATE_ACCOUNT_BTN": "Criar uma conta",
+      "EMAILPLACEHOLDER": "Digite seu endereço de e-mail ",
+      "PASSWORDPLACEHOLDER": "Digite sua senha",
+      "USERNAMEPLACEHOLDER": "Digite seu nome completo"
+    },
+    "LABEL": {
+      "EMAIL": "Email",
+      "PASSWORD": "Senha",
+      "PASSWORD_DUPLICATE": "Repita sua senha",
+      "USERNAME": "Nome completo"
+    }
+  }
+}
