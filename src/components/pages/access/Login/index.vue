@@ -44,12 +44,24 @@
           </v-btn>
         </v-layout>
 
-        <v-layout row wrap justify-end>
-          <a class="button is-text is-small" href="/forgot-password">
-            <h6 class="is-4 password">
-              {{ $t("LOGIN.FORM.FORGOT_PASSWORD_BTN") }}
-            </h6>
-          </a>
+        <v-layout row justify-end>
+          <v-flex pa-1>
+            <a
+              class="button is-text is-small align-right"
+              href="/create-account"
+            >
+              <h6 class="is-4 password">
+                {{ $t("LOGIN.FORM.CREATE_ACCOUNT_BTN") }}
+              </h6>
+            </a>
+          </v-flex>
+          <v-flex shrink pa-1>
+            <a class="button is-text is-small" href="/forgot-password">
+              <h6 class="is-4 password">
+                {{ $t("LOGIN.FORM.FORGOT_PASSWORD_BTN") }}
+              </h6>
+            </a>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-form>
@@ -76,6 +88,13 @@
 
 .login-wrapper .form {
   width: 100%;
+}
+
+.align-right {
+  display: flex;
+  justify-content: end;
+  align-content: flex-end;
+  align-items: flex-end;
 }
 
 @media (max-width: 1024px) {

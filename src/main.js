@@ -53,35 +53,6 @@ new Vue({
     };
   },
   mounted() {
-    Vue.$globalEvent.$on("onFlashMessage", item => {
-      switch (item.type) {
-        case "success":
-          this.$toast.success({
-            title: i18n.t("GLOBAL.SUCCESS"),
-            message: item.message
-          });
-          break;
-        case "error":
-          this.$toast.error({
-            title: i18n.t("GLOBAL.ERROR"),
-            message: item.message
-          });
-          break;
-        case "warning":
-          this.$toast.warn({
-            title: i18n.t("GLOBAL.WARNING"),
-            message: item.message
-          });
-          break;
-        case "info":
-          this.$toast.info({
-            title: i18n.t("GLOBAL.INFORMATION"),
-            message: item.message
-          });
-          break;
-      }
-    });
-
     Vue.$globalEvent.$on("httpError", error => {
       console.error(">> httpError <<", error);
       if (error) {

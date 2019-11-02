@@ -50,13 +50,9 @@
 </template>
 <script>
 import Helpers from "@/helpers";
-import LanguageChanger from "@/components/shared/ui/LanguageChanger";
 import store from "@/middlewares/store";
 
 export default {
-  components: {
-    LanguageChanger
-  },
   computed: {
     toolbarColor() {
       return this.$vuetify.options.extra.mainNav;
