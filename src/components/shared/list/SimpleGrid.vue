@@ -17,11 +17,17 @@
           <template slot="items" slot-scope="props">
             <td
               v-for="(header, index) in headers"
-              :class="{ 'text-xs-left': index > 0 }"
+              :class="{
+                'text-xs-right': header.aling === 'right' || index !== 0,
+                'text-xs-left': header.aling === 'left' || index !== 0
+              }"
               v-bind:key="header.value"
-            >
-              {{ props.item[header.value] }}
-            </td>
+              v-html="
+                header.customTemplate
+                  ? header.customTemplate(props.item)
+                  : props.item[header.value]
+              "
+            ></td>
           </template>
         </v-data-table>
       </template>

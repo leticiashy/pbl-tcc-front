@@ -2,10 +2,14 @@ import Vue from "vue";
 import Router from "vue-router";
 import AuthService from "@/services/AuthService";
 
-import External from "@/components/master/External";
+import Empty from "@/components/master/Empty";
 import Internal from "@/components/master/Internal";
 
-import Dashboard from "@/components/pages/dashboard/Dashboard";
+import Resume from "@/components/pages/dashboard/Resume";
+
+import UserList from "@/components/pages/users/List";
+import UserShow from "@/components/pages/users/Show";
+
 import Login from "@/components/pages/access/Login";
 import CreateAccount from "@/components/pages/access/CreateAccount";
 
@@ -19,40 +23,55 @@ const router = new Router({
   linkActiveClass: "is-active",
   routes: [
     {
-      path: "/",
-      name: "external",
-      component: External,
-      children: [
-        {
-          path: "/login",
-          name: "login",
-          component: Login
-        },
-        {
-          path: "/create-account",
-          name: "create-account",
-          component: CreateAccount
-        },
-        {
-          path: "/",
-          redirect: "/dashboard"
-        }
-      ]
+      path: "/login",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/create-account",
+      name: "create-account",
+      component: CreateAccount
     },
     {
       path: "/",
       name: "Internal",
       component: Internal,
       meta: {
-        context: "company"
+        context: ["user", "manager", "admin"]
       },
       children: [
         {
-          path: "/dashboard",
-          name: "Dashboard",
-          component: Dashboard
+          path: "/resume",
+          name: "Resume",
+          component: Resume
+        },
+        {
+          path: "/users",
+          name: "User",
+          component: Empty,
+          children: [
+            {
+              path: "/users/list",
+              name: "UserList",
+              component: UserList
+            },
+            // {
+            //   path: "/users/add",
+            //   name: "UserAdd",
+            //   component: UserShow
+            // },
+            {
+              path: "/users/:username",
+              name: "UserShow",
+              component: UserShow
+            }
+          ]
         }
       ]
+    },
+    {
+      path: "*",
+      redirect: "/resume"
     }
   ]
 });

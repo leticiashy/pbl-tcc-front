@@ -1,7 +1,9 @@
 {
   "GLOBAL": {
     "MAIN_PAGES": "Páginas principais",
-    "DASHBOARD": "Dashboard",
+    "RESUME": "Tela inicial",
+    "USER_SECTION": "Usuários",
+    "LIST_USER": "Ver usuários",
     "LOGOUT": "Sair",
     "PLACEHOLDER": "DD/MM/YYYY",
     "DATE_FORMAT": "DD/MM/YYYY",
@@ -22,6 +24,11 @@
     "SUCCESS": "Sucesso",
     "ERROR": "Erro",
     "WARNING": "Atenção",
-    "INFORMATION": "Informativo"
+    "INFORMATION": "Informativo",
+    "EDIT": "Editar",
+    "DELETE": "Deletar",
+    "ROLE_ADMIN": "Administrador",
+    "ROLE_MANAGER": "Orientador",
+    "ROLE_USER": "Aluno"
   }
 }
