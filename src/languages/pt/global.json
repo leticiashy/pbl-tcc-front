@@ -24,6 +24,11 @@
     "SUCCESS": "Sucesso",
     "ERROR": "Erro",
     "WARNING": "Atenção",
-    "INFORMATION": "Informativo"
+    "INFORMATION": "Informativo",
+    "EDIT": "Editar",
+    "DELETE": "Deletar",
+    "ROLE_ADMIN": "Administrador",
+    "ROLE_MANAGER": "Orientador",
+    "ROLE_USER": "Aluno"
   }
 }

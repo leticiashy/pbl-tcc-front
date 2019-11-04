@@ -82,10 +82,11 @@ export default {
   mounted() {
     const username = this.$route.params.username;
 
-    this.apiClient.get(`users/${username}`).then(resp => {
-      console.log(resp);
-      this.data = resp;
-    });
+    if (username) {
+      this.apiClient.get(`users/${username}`).then(resp => {
+        this.data = resp;
+      });
+    }
   },
   data() {
     return {
@@ -105,15 +106,15 @@ export default {
       return [
         this.validateRole("admin") && {
           value: "admin",
-          text: this.$t("GLOBAl.ROLE_ADMIN")
+          text: this.$t("GLOBAL.ROLE_ADMIN")
         },
         this.validateRole("manager") && {
           value: "manager",
-          text: this.$t("GLOBAl.ROLE_MANAGER")
+          text: this.$t("GLOBAL.ROLE_MANAGER")
         },
         this.validateRole("user") && {
           value: "user",
-          text: this.$t("GLOBAl.ROLE_USER")
+          text: this.$t("GLOBAL.ROLE_USER")
         }
       ];
     }
@@ -121,16 +122,27 @@ export default {
   methods: {
     onSubmit: function() {
       if (this.$refs.userForm.validate()) {
-        this.apiClient
-          .put(`users/${this.data.username}`, this.data)
-          .then(resp => {
-            console.log(resp);
-            this.data = resp;
-          })
-          .catch(resp => {
-            console.log(resp);
-            this.errors = resp.body.errors;
-          });
+        const username = this.$route.params.username;
+
+        if (username) {
+          this.apiClient
+            .put(`users/${this.data.username}`, this.data)
+            .then(resp => {
+              this.$router.push("/users/list");
+            })
+            .catch(resp => {
+              this.errors = resp.body.errors;
+            });
+        } else {
+          this.apiClient
+            .post(`users/`, this.data)
+            .then(resp => {
+              this.$router.push("/users/list");
+            })
+            .catch(resp => {
+              this.errors = resp.body.errors;
+            });
+        }
       }
     }
   }

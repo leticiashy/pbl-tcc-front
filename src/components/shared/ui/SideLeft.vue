@@ -93,6 +93,26 @@ export default {
             this.canShow(["admin", "manager"]) && {
               path: "/users/list",
               text: this.$t("GLOBAL.LIST_USER")
+            },
+            this.canShow(["admin", "manager", "user"]) && {
+              path: "/users/profile",
+              text: this.$t("GLOBAL.PROFILE_USER")
+            }
+          ]
+        },
+
+        {
+          path: "",
+          title: this.$t("GLOBAL.EVENT_SECTION"),
+          action: "ti-agenda",
+          items: [
+            this.canShow(["admin", "manager", "user"]) && {
+              path: "/events/list",
+              text: this.$t("GLOBAL.LIST_EVENT")
+            },
+            this.canShow(["admin", "manager"]) && {
+              path: "/events/add",
+              text: this.$t("GLOBAL.PROFILE_EVENT")
             }
           ]
         }

@@ -75,7 +75,7 @@
                     ? header.customTemplate(props.item)
                     : props.item[header.value]
                 "
-                @click="header.click ? header.click(props.item) : false"
+                @click.prevent="header.click ? header.click(props.item) : false"
               ></td>
             </tr>
           </template>

@@ -55,6 +55,11 @@ const router = new Router({
               name: "UserList",
               component: UserList
             },
+            // {
+            //   path: "/users/add",
+            //   name: "UserAdd",
+            //   component: UserShow
+            // },
             {
               path: "/users/:username",
               name: "UserShow",

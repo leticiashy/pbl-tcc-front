@@ -29,9 +29,7 @@ export default {
     ActionGrid
   },
   mounted() {
-    this.apiClient.get("users").then(resp => {
-      this.data = resp;
-    });
+    this.search();
   },
   data() {
     return {
@@ -63,22 +61,34 @@ export default {
           value: "id",
           customTemplate: item => {
             return this.validateRole(item.role)
-              ? `<a href="/users/${item.username}"> Editar </a>`
+              ? `<a href="#"> ${this.$t("GLOBAL.EDIT")} </a>`
               : "";
+          },
+          click: item => {
+            this.$router.push(`/users/${item.username}`)
           }
         },
         {
           value: "id",
           customTemplate: item => {
             return this.validateRole(item.role)
-              ? `<a href="#"> Deletar </a>`
+              ? `<a href="#"> ${this.$t("GLOBAL.DELETE")} </a>`
               : "";
           },
           click: item => {
-            console.log(item);
+            if (confirm("Tem certeza que deseja remover?")) {
+               this.apiClient.delete(`users/${item.username}`).then(this.search)
+            }
           }
         }
       ];
+    }
+  },
+  methods: {
+    search: function() {
+      this.apiClient.get("users").then(resp => {
+        this.data = resp;
+      });
     }
   }
 };

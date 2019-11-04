@@ -1,0 +1,20 @@
+{
+  "USERS": {
+    "GRID": {
+      "NAME": "Nome",
+      "ROLE": "perfil",
+      "CREATED_AT": "Criado em"
+    },
+    "FORM": {
+      "TITLE": "Edição de usuários",
+      "NAMEPLACEHOLDER": "Escreva seu nome",
+      "EMAILPLACEHOLDER": "Escreva seu email",
+      "ROLE": "Perfil",
+      "SUBMIT": "Gravar"
+    },
+    "LABEL": {
+      "NAME": "Nome",
+      "EMAIL": "E-mail"
+    }
+  }
+}
