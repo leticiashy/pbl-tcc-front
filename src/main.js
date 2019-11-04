@@ -14,10 +14,12 @@ import ApiHttpInterceptor from "@/interceptors/ApiHttpInterceptor";
 import "@/middlewares/vuetify";
 
 import LanguagesMixin from "@/mixins/LanguagesMixin";
+import AuthMixin from "@/mixins/AuthMixin";
 
 import FlashMessageService from "@/services/FlashMessageService";
 
 Vue.mixin(LanguagesMixin);
+Vue.mixin(AuthMixin);
 
 Vue.use(CxltToastr, {
   position: "top full width",

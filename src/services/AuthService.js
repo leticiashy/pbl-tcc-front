@@ -9,7 +9,7 @@ const ANONYMOUS_USER = {
   email: undefined,
   name: undefined,
   token: undefined,
-  roles: []
+  roles: "none"
 };
 
 export default class AuthService {

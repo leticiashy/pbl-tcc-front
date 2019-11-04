@@ -13,6 +13,7 @@
     "MAX_VAL": "Este campo tem um valor máximo ",
     "MIN_VAL": "Este campo tem um valor mínimo ",
     "INVALID_PHONE_NUMBER": "Número inválido",
-    "NO_GROUP_ERROR": "Nenhum grupo encontrado "
+    "NO_GROUP_ERROR": "Nenhum grupo encontrado",
+    "PASSWORD": "Senhas devem ser iguais"
   }
 }

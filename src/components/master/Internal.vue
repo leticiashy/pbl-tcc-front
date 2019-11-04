@@ -1,11 +1,20 @@
 <template>
   <v-content>
-    <router-view />
+    <layout />
+    <v-container>
+      <router-view />
+    </v-container>
   </v-content>
 </template>
 
 <script>
-export default {};
+import Layout from "@/components/shared/ui/Layout";
+
+export default {
+  components: {
+    Layout
+  }
+};
 </script>
 
 <style scoped>

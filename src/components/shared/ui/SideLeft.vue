@@ -31,19 +31,15 @@
               item.title
             }}</v-list-tile-title>
 
-            <v-list-tile-title v-else @click="$router.push('/' + item.path)">{{
+            <v-list-tile-title v-else @click="$router.push(item.path)">{{
               item.title
             }}</v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile
-            v-if="item.items"
-            v-for="subItem in item.items"
-            :key="subItem.title"
-          >
+          <v-list-tile v-for="subItem in item.items" :key="subItem.title">
             <v-list-tile-title
               class="sideleft"
-              @click="$router.push('/' + subItem.path)"
+              @click="$router.push(subItem.path)"
               >{{ subItem.text }}</v-list-tile-title
             >
           </v-list-tile>
@@ -84,9 +80,21 @@ export default {
     items() {
       return [
         {
-          path: "",
-          title: this.$t("GLOBAL.DASHBOARD"),
+          path: "/resume",
+          title: this.$t("GLOBAL.RESUME"),
           action: "ti-home"
+        },
+
+        {
+          path: "",
+          title: this.$t("GLOBAL.USER_SECTION"),
+          action: "ti-user",
+          items: [
+            this.canShow(["admin", "manager"]) && {
+              path: "/users/list",
+              text: this.$t("GLOBAL.LIST_USER")
+            }
+          ]
         }
       ];
     }
