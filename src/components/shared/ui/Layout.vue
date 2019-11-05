@@ -1,9 +1,9 @@
 <template>
   <div class="app-layout">
     <!-- sideleft -->
-    <side-left class="app--drawer"></side-left>
+    <side-left class="app--drawer" :items="itemsNavMenu"></side-left>
     <!-- sidetop -->
-    <side-top class="app--toolbar"></side-top>
+    <side-top class="app--toolbar" :items="accountItems"></side-top>
     <!-- content -->
   </div>
 </template>
@@ -27,7 +27,67 @@ export default {
       }
     };
   },
+  computed: {
+    accountItems() {
+      return [
+        {
+          icon: "account_circle",
+          href: "/users/profile",
+          title: this.$t("GLOBAL.PROFILE_USER")
+        },
+        {
+          icon: "exit_to_app",
+          href: "/login",
+          title: this.$t("GLOBAL.LOGOUT"),
+          click: () => {
+            store.commit("user/LOG_OUT");
+            window.getApp.$emit("APP_LOGOUT");
+          }
+        }
+      ];
+    },
+    itemsNavMenu() {
+      return [
+        {
+          path: "/resume",
+          title: this.$t("GLOBAL.RESUME"),
+          action: "ti-home"
+        },
 
+        {
+          path: "",
+          title: this.$t("GLOBAL.USER_SECTION"),
+          action: "ti-user",
+          items: [
+            this.canShow(["admin", "manager"]) && {
+              path: "/users/list",
+              text: this.$t("GLOBAL.LIST_USER")
+            },
+            this.canShow(["admin", "manager", "user"]) && {
+              path: "/users/profile",
+              text: this.$t("GLOBAL.PROFILE_USER")
+            }
+          ]
+        },
+
+        {
+          path: "",
+          title: this.$t("GLOBAL.EVENT_SECTION"),
+          action: "ti-agenda",
+          items: [
+            this.canShow(["admin", "manager", "user"]) && {
+              path: "/events/list",
+              text: this.$t("GLOBAL.LIST_EVENT")
+            },
+            this.canShow(["admin", "manager"]) && {
+              path: "/events/add",
+              text: this.$t("GLOBAL.ADD_EVENT")
+            }
+          ]
+        }
+      ];
+    }
+  },
   created() {
     window.getApp = this;
   }

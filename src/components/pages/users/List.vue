@@ -45,7 +45,10 @@ export default {
           sortable: false,
           align: "left",
           text: this.$t("USERS.GRID.NAME"),
-          value: "name"
+          value: "name",
+          customTemplate: item => {
+            return `<a href="/users/${item.username}/show"><strong> ${item.name} </strong></a>`;
+          }
         },
         { sortable: false, text: this.$t("USERS.GRID.ROLE"), value: "role" },
         {
@@ -61,11 +64,8 @@ export default {
           value: "id",
           customTemplate: item => {
             return this.validateRole(item.role)
-              ? `<a href="#"> ${this.$t("GLOBAL.EDIT")} </a>`
+              ? `<a href="/users/${item.username}/edit"> ${this.$t("GLOBAL.EDIT")} </a>`
               : "";
-          },
-          click: item => {
-            this.$router.push(`/users/${item.username}`)
           }
         },
         {

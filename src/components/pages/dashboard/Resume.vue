@@ -1,7 +1,7 @@
 <template>
   <div id="pageDashboard">
     <header>
-      <div class="page-name">{{ $t("GLOBAL.DASHBOARD") }}</div>
+      <div class="page-name">{{ $t("GLOBAL.RESUME_TITLE") }}</div>
     </header>
 
     <v-container fluid grid-list-lg>

@@ -3,17 +3,11 @@
     id="appDrawer"
     :mini-variant.sync="mini"
     fixed
-    :dark="$vuetify.dark"
     app
     v-model="drawer"
     width="260"
+    v-if="items.length"
   >
-    <v-toolbar color="primary darken-1" dark>
-      <h1>LOGO</h1>
-      <v-toolbar-title class="ml-0 pl-3">
-        <span class="hidden-sm-and-down"></span>
-      </v-toolbar-title>
-    </v-toolbar>
     <vue-perfect-scrollbar
       class="drawer-menu--scroll"
       :settings="scrollSettings"
@@ -59,6 +53,12 @@ export default {
     expanded: {
       type: Boolean,
       default: true
+    },
+    items: {
+      type: Array,
+      default: function() {
+        return []
+      }
     }
   },
   data() {
@@ -69,55 +69,6 @@ export default {
         maxScrollbarLength: 160
       }
     };
-  },
-  computed: {
-    computeGroupActive() {
-      return true;
-    },
-    sideToolbarColor() {
-      return this.$vuetify.options.extra.sideNav;
-    },
-    items() {
-      return [
-        {
-          path: "/resume",
-          title: this.$t("GLOBAL.RESUME"),
-          action: "ti-home"
-        },
-
-        {
-          path: "",
-          title: this.$t("GLOBAL.USER_SECTION"),
-          action: "ti-user",
-          items: [
-            this.canShow(["admin", "manager"]) && {
-              path: "/users/list",
-              text: this.$t("GLOBAL.LIST_USER")
-            },
-            this.canShow(["admin", "manager", "user"]) && {
-              path: "/users/profile",
-              text: this.$t("GLOBAL.PROFILE_USER")
-            }
-          ]
-        },
-
-        {
-          path: "",
-          title: this.$t("GLOBAL.EVENT_SECTION"),
-          action: "ti-agenda",
-          items: [
-            this.canShow(["admin", "manager", "user"]) && {
-              path: "/events/list",
-              text: this.$t("GLOBAL.LIST_EVENT")
-            },
-            this.canShow(["admin", "manager"]) && {
-              path: "/events/add",
-              text: this.$t("GLOBAL.PROFILE_EVENT")
-            }
-          ]
-        }
-      ];
-    }
   },
   created() {
     window.getApp.$on("APP_DRAWER_TOGGLED", () => {

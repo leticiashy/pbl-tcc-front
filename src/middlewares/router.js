@@ -8,7 +8,7 @@ import Internal from "@/components/master/Internal";
 import Resume from "@/components/pages/dashboard/Resume";
 
 import UserList from "@/components/pages/users/List";
-import UserShow from "@/components/pages/users/Show";
+import UserEdit from "@/components/pages/users/Edit";
 
 import Login from "@/components/pages/access/Login";
 import CreateAccount from "@/components/pages/access/CreateAccount";
@@ -45,6 +45,7 @@ const router = new Router({
           name: "Resume",
           component: Resume
         },
+
         {
           path: "/users",
           name: "User",
@@ -55,15 +56,49 @@ const router = new Router({
               name: "UserList",
               component: UserList
             },
-            // {
-            //   path: "/users/add",
-            //   name: "UserAdd",
-            //   component: UserShow
-            // },
             {
-              path: "/users/:username",
+              path: "/users/profile",
+              name: "UserProfile",
+              component: Empty
+            },
+            {
+              path: "/users/:username/show",
               name: "UserShow",
-              component: UserShow
+              component: Empty
+            },
+            {
+              path: "/users/:username/edit",
+              name: "UserEdit",
+              component: UserEdit
+            }
+          ]
+        },
+
+        {
+          path: "/events",
+          name: "Event",
+          component: Empty,
+          children: [
+            {
+              path: "/events/list",
+              name: "EventList",
+              component: Empty
+            },
+            {
+              path: "/events/add",
+              name: "EventAdd",
+              component: Empty
+            },
+            {
+              path: "/events/:id/show",
+              name: "EventShow",
+              component: Empty
+            }
+            ,
+            {
+              path: "/events/:id/edit",
+              name: "EventEdit",
+              component: Empty
             }
           ]
         }

@@ -10,9 +10,6 @@
                   {{ $t("USERS.FORM.TITLE") }}
                 </h3>
               </v-flex>
-              <v-flex shrink>
-                <!-- <language-changer /> -->
-              </v-flex>
             </v-layout>
 
             <v-flex>
