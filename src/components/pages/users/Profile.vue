@@ -71,6 +71,37 @@
                 </v-layout>
               </v-container>
             </v-flex>
+
+            <v-flex xs12>
+              <v-layout row wrap>
+                <v-flex sm8 pa-1>
+                  <action-grid
+                    title="Desafios abertos"
+                    :headers="nonActiveHeaders"
+                    :data="globalEvents.data"
+                    hide-actions
+                  />
+                </v-flex>
+                <v-flex sm4 pa-1>
+                  <action-grid
+                    title="Desafios em progresso"
+                    :headers="activeHeaders"
+                    :data="activeData"
+                    hide-actions
+                  />
+
+                  <br />
+                  <br />
+
+                  <action-grid
+                    title="Desafios passados"
+                    :headers="nonActiveHeaders"
+                    :data="nonActiveData"
+                    hide-actions
+                  />
+                </v-flex>
+              </v-layout>
+            </v-flex>
           </v-layout>
         </v-card-text>
       </v-card>
@@ -122,7 +153,6 @@
                 name="password"
                 id="password"
                 type="password"
-                :rules="[rules.required]"
               ></v-text-field>
 
               <v-text-field
@@ -133,7 +163,6 @@
                 id="password"
                 type="password"
                 :rules="[
-                  rules.required,
                   val => val === data.password || $t('GLOBAL_ERROR.PASSWORD')
                 ]"
               ></v-text-field>
@@ -163,10 +192,13 @@ import ValidationMixin from "@/mixins/ValidationMixin";
 
 import CircleStatistic from "@/components/shared/statistic/CircleStatistic";
 
+import ActionGrid from "@/components/shared/list/ActionGrid";
+
 export default {
   mixins: [ApiClientMixin, ValidationMixin],
   components: {
-    CircleStatistic
+    CircleStatistic,
+    ActionGrid
   },
   mounted() {
     this.getData();
@@ -180,6 +212,9 @@ export default {
     return {
       paramsReady: false,
       color: Material,
+      globalEvents: {
+        data: []
+      },
       data: {
         email: null,
         password: null,
@@ -189,6 +224,44 @@ export default {
       errors: [],
       view: "show"
     };
+  },
+  computed: {
+    activeHeaders: function() {
+      return [
+        {
+          name: "title",
+          text: "Eventos",
+          align: "left",
+          sortable: false,
+          customTemplate: props => {
+            return `<a href="${props.link}">${props.title}</a>`;
+          }
+        }
+      ];
+    },
+    activeData: function() {
+      return this.data && this.data.userEvents
+        ? this.data.userEvents.filter(x => x.active)
+        : [];
+    },
+    nonActiveHeaders: function() {
+      return [
+        {
+          name: "title",
+          text: "Eventos",
+          align: "left",
+          sortable: false,
+          customTemplate: props => {
+            return `<a href="${props.link}">${props.title}</a>`;
+          }
+        }
+      ];
+    },
+    nonActiveData: function() {
+      return this.data && this.data.userEvents
+        ? this.data.userEvents.filter(x => !x.active)
+        : [];
+    }
   },
   methods: {
     getData: function() {
@@ -210,6 +283,50 @@ export default {
             {
               subheading: "Redes",
               percent: 25
+            }
+          ];
+          this.globalEvents = {
+            embedded: {
+              href: "/events"
+            },
+            data: [
+              {
+                title: "Semana tecnológica 2020",
+                active: true,
+                link: "/event/1"
+              },
+              {
+                title: "Projeto final Redes",
+                active: false,
+                link: "/event/1"
+              },
+              {
+                title: "Seminário de tecnologia e aprendizado",
+                active: true,
+                link: "/event/1"
+              },
+              {
+                title: "Projeto de matemática",
+                active: true,
+                link: "/event/1"
+              },
+              {
+                title: "Estruturas de dado e análise",
+                active: false,
+                link: "/event/1"
+              }
+            ]
+          };
+          this.data.userEvents = [
+            {
+              title: "Semana tecnológica 2020",
+              active: true,
+              link: "/event/1"
+            },
+            {
+              title: "Estruturas de dado e análise",
+              active: false,
+              link: "/event/1"
             }
           ];
         });

@@ -55,7 +55,6 @@
                 >
                 {{ header.text }}
               </th>
-              <th></th>
             </tr>
           </template>
 

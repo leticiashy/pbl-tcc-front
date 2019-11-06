@@ -15,6 +15,7 @@
       <v-list>
         <v-list-group
           v-for="item in items"
+          v-show="item"
           v-model="item.active"
           :class="{ 'no-activator': !item.items }"
           :key="item.title"
@@ -30,7 +31,11 @@
             }}</v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile v-for="subItem in item.items" :key="subItem.title">
+          <v-list-tile
+            v-for="subItem in item.items"
+            :key="subItem.title"
+            v-show="subItem"
+          >
             <v-list-tile-title
               class="sideleft"
               @click="$router.push(subItem.path)"
