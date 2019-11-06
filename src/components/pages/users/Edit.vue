@@ -111,7 +111,7 @@ export default {
         if (username) {
           this.apiClient
             .put(`users/${this.data.username}`, this.data)
-            .then(resp => {
+            .then(() => {
               this.$router.push("/users/list");
             })
             .catch(resp => {
@@ -120,7 +120,7 @@ export default {
         } else {
           this.apiClient
             .post(`users/`, this.data)
-            .then(resp => {
+            .then(() => {
               this.$router.push("/users/list");
             })
             .catch(resp => {

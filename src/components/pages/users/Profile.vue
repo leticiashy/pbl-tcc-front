@@ -5,7 +5,9 @@
         <v-card-text>
           <v-layout row wrap>
             <v-flex xs10>
-              <p class="display-2 text--primary">{{ $t("USERS.LABEL.PROFILE") }}</p>
+              <p class="display-2 text--primary">
+                {{ $t("USERS.LABEL.PROFILE") }}
+              </p>
             </v-flex>
             <v-flex xs2>
               <v-btn
@@ -14,7 +16,8 @@
                 dark
                 color="deep-purple accent-4"
                 @click="view = 'edit'"
-              >{{ $t("USERS.LABEL.PROFILE_EDIT") }}</v-btn>
+                >{{ $t("USERS.LABEL.PROFILE_EDIT") }}</v-btn
+              >
             </v-flex>
             <v-flex pa-1 sm6>
               <h3 class="text--primary">{{ $t("USERS.LABEL.NAME") }}:</h3>
@@ -44,10 +47,20 @@
               <v-container fluid grid-list-lg>
                 <v-layout row wrap>
                   <v-flex xs12>
-                    <p class="display-1 text--primary">{{ $t("USERS.LABEL.PROFILE_GRADES") }}</p>
-                    <strong class="text--primary">{{ $t("USERS.LABEL.RATE") }}:</strong> {{ data.rate }}
+                    <p class="display-1 text--primary">
+                      {{ $t("USERS.LABEL.PROFILE_GRADES") }}
+                    </p>
+                    <strong class="text--primary"
+                      >{{ $t("USERS.LABEL.RATE") }}:</strong
+                    >
+                    {{ data.rate }}
                   </v-flex>
-                  <v-flex sm4 xs12 v-for="(item, index) in data.grades" :key="'c-trending' + index">
+                  <v-flex
+                    sm4
+                    xs12
+                    v-for="(item, index) in data.grades"
+                    :key="'c-trending' + index"
+                  >
                     <circle-statistic
                       :title="item.subheading"
                       icon="list"
@@ -73,9 +86,9 @@
           <v-layout column>
             <v-layout row>
               <v-flex>
-                <h3
-                  class="title-login title is-3 has-text-right"
-                >{{ $t("USERS.FORM.PROFILE_TITLE") }}</h3>
+                <h3 class="title-login title is-3 has-text-right">
+                  {{ $t("USERS.FORM.PROFILE_TITLE") }}
+                </h3>
               </v-flex>
             </v-layout>
 
@@ -128,16 +141,12 @@
           </v-layout>
 
           <v-layout row wrap justify-end>
-            <v-btn dark large color="red" @click="view='show'">
-              {{
-              $t("USERS.FORM.CANCEL")
-              }}
+            <v-btn dark large color="red" @click="view = 'show'">
+              {{ $t("USERS.FORM.CANCEL") }}
             </v-btn>
 
             <v-btn dark large color="green" type="submit">
-              {{
-              $t("USERS.FORM.SUBMIT")
-              }}
+              {{ $t("USERS.FORM.SUBMIT") }}
             </v-btn>
           </v-layout>
         </v-container>
@@ -185,32 +194,32 @@ export default {
     getData: function() {
       const user = this.getUser();
 
-    if (user.username) {
-      this.apiClient.get(`users/${user.username}`).then(resp => {
-        this.data = resp;
-        this.data.rate = 1200;
-        this.data.grades = [
-          {
-            subheading: "Lógica de programação e algoritmos",
-            percent: 15
-          },
-          {
-            subheading: "Matemática",
-            percent: 45
-          },
-          {
-            subheading: "Redes",
-            percent: 25
-          }
-        ];
-      });
-    }
+      if (user.username) {
+        this.apiClient.get(`users/${user.username}`).then(resp => {
+          this.data = resp;
+          this.data.rate = 1200;
+          this.data.grades = [
+            {
+              subheading: "Lógica de programação e algoritmos",
+              percent: 15
+            },
+            {
+              subheading: "Matemática",
+              percent: 45
+            },
+            {
+              subheading: "Redes",
+              percent: 25
+            }
+          ];
+        });
+      }
     },
     onSubmit: function() {
       if (this.$refs.userForm.validate()) {
         this.apiClient
           .put(`users/${this.data.username}`, this.data)
-          .then(resp => {
+          .then(() => {
             this.view = "show";
           });
       }

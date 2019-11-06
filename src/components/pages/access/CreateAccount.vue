@@ -185,7 +185,7 @@ export default {
 }
 .form-wrapper {
   max-width: 500px;
-  height: calc(auto + 30px);
+  /* height: calc(auto + 30px); */
   background: #fafafa;
   justify-content: center;
   align-items: center;

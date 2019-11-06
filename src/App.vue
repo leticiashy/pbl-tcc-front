@@ -48,19 +48,19 @@ export default {
                 msg: this.$t("INFRA.HTTP.ACCESS_DENIED_MESSAGE")
               });
             }
-            router.push("/login");
+            this.router.push("/login");
           } else if (error.showException && error.status === 403) {
             this.addMessage({
               type: "warning",
               msg: this.$t("INFRA.HTTP.ACCESS_DENIED_MESSAGE")
             });
-            router.push("/login");
+            this.router.push("/login");
           } else if (error.showException && error.status === 412) {
             this.addMessage({
               type: "warning",
               msg: this.$t("INFRA.HTTP.SESSION_EXPIRED_MESSAGE")
             });
-            router.push("/login");
+            this.router.push("/login");
           } else if (error.showException && error.status === 409) {
             this.addMessage({
               type: "warning",
@@ -106,16 +106,16 @@ export default {
       }
     });
 
-     setInterval(() => {
-       if (this.errors.length) {
-         this.errors = this.errors.filter((message) => {
-           const now = new Date();
-           const prev = new Date(message.date);
+    setInterval(() => {
+      if (this.errors.length) {
+        this.errors = this.errors.filter(message => {
+          const now = new Date();
+          const prev = new Date(message.date);
 
-           return Math.floor((now.getTime() - prev.getTime()) / (1000)) < 15
-         });
-       }
-     }, 15000);
+          return Math.floor((now.getTime() - prev.getTime()) / 1000) < 15;
+        });
+      }
+    }, 15000);
   },
   methods: {
     addMessage: function(obj) {
