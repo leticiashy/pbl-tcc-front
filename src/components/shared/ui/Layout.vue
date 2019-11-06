@@ -8,6 +8,8 @@
   </div>
 </template>
 <script>
+import store from "@/middlewares/store";
+
 import SideLeft from "@/components/shared/ui/SideLeft";
 import SideTop from "@/components/shared/ui/SideTop";
 

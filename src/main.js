@@ -2,8 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 import VueResource from "vue-resource";
-import CxltToastr from "cxlt-vue2-toastr";
-import "cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css";
 
 import App from "@/App";
 import store from "@/middlewares/store";
@@ -16,18 +14,8 @@ import "@/middlewares/vuetify";
 import LanguagesMixin from "@/mixins/LanguagesMixin";
 import AuthMixin from "@/mixins/AuthMixin";
 
-import FlashMessageService from "@/services/FlashMessageService";
-
 Vue.mixin(LanguagesMixin);
 Vue.mixin(AuthMixin);
-
-Vue.use(CxltToastr, {
-  position: "top full width",
-  showDuration: 2000,
-  timeOut: 8000,
-  closeButton: true,
-  progressBar: true
-});
 
 Vue.use(VueResource);
 Vue.http.interceptors.push(ApiHttpInterceptor);
@@ -55,50 +43,6 @@ new Vue({
     };
   },
   mounted() {
-    Vue.$globalEvent.$on("httpError", error => {
-      console.error(">> httpError <<", error);
-      if (error) {
-        if (error.status) {
-          if (error.showException && error.status === 401) {
-            if (error.body && error.body.detail) {
-              FlashMessageService.error(error.body.detail);
-            } else {
-              FlashMessageService.error(
-                this.$t("INFRA.HTTP.ACCESS_DENIED_MESSAGE")
-              );
-            }
-            router.push("/login");
-          } else if (error.showException && error.status === 403) {
-            FlashMessageService.error(
-              this.$t("INFRA.HTTP.ACCESS_DENIED_MESSAGE")
-            );
-            router.push("/login");
-          } else if (error.showException && error.status === 412) {
-            FlashMessageService.error(
-              this.$t("INFRA.HTTP.SESSION_EXPIRED_MESSAGE")
-            );
-            router.push("/login");
-          } else if (error.showException && error.status === 409) {
-            FlashMessageService.warning(window.getMessage(error));
-          } else if (
-            error.showException &&
-            (error.status >= 404 && error.status < 500)
-          ) {
-            FlashMessageService.warning(window.getMessage(error));
-          } else if (error.status === 400 && error.showException) {
-            FlashMessageService.warning(window.getMessage(error));
-          } else if (error.showException) {
-            FlashMessageService.error(window.getMessage(error), error);
-          }
-        } else {
-          FlashMessageService.error(window.getMessage(error), error);
-          console.error(
-            `${error.operation} failed: ${window.getMessage(error)}`
-          );
-        }
-      }
-    });
-
     store.commit("loader/FINISH_LONG_LOADING");
     store.commit("application/LOAD_APPLICATION_END");
   }

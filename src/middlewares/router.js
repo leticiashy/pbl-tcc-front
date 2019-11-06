@@ -9,6 +9,7 @@ import Resume from "@/components/pages/dashboard/Resume";
 
 import UserList from "@/components/pages/users/List";
 import UserEdit from "@/components/pages/users/Edit";
+import UserProfile from "@/components/pages/users/Profile";
 
 import Login from "@/components/pages/access/Login";
 import CreateAccount from "@/components/pages/access/CreateAccount";
@@ -59,7 +60,7 @@ const router = new Router({
             {
               path: "/users/profile",
               name: "UserProfile",
-              component: Empty
+              component: UserProfile
             },
             {
               path: "/users/:username/show",
@@ -93,8 +94,7 @@ const router = new Router({
               path: "/events/:id/show",
               name: "EventShow",
               component: Empty
-            }
-            ,
+            },
             {
               path: "/events/:id/edit",
               name: "EventEdit",

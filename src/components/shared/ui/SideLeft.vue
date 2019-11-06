@@ -57,7 +57,7 @@ export default {
     items: {
       type: Array,
       default: function() {
-        return []
+        return [];
       }
     }
   },

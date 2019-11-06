@@ -44,15 +44,15 @@ export default {
         {
           sortable: false,
           align: "left",
-          text: this.$t("USERS.GRID.NAME"),
+          text: this.$t("USERS.LABEL.NAME"),
           value: "name",
           customTemplate: item => {
             return `<a href="/users/${item.username}/show"><strong> ${item.name} </strong></a>`;
           }
         },
-        { sortable: false, text: this.$t("USERS.GRID.ROLE"), value: "role" },
+        { sortable: false, text: this.$t("USERS.LABEL.ROLE"), value: "role" },
         {
-          text: this.$t("USERS.GRID.CREATED_AT"),
+          text: this.$t("USERS.LABEL.CREATED_AT"),
           value: "created_at",
           customTemplate: item => {
             return moment(item.created_at)
@@ -64,7 +64,9 @@ export default {
           value: "id",
           customTemplate: item => {
             return this.validateRole(item.role)
-              ? `<a href="/users/${item.username}/edit"> ${this.$t("GLOBAL.EDIT")} </a>`
+              ? `<a href="/users/${item.username}/edit"> ${this.$t(
+                  "GLOBAL.EDIT"
+                )} </a>`
               : "";
           }
         },
@@ -77,7 +79,7 @@ export default {
           },
           click: item => {
             if (confirm("Tem certeza que deseja remover?")) {
-               this.apiClient.delete(`users/${item.username}`).then(this.search)
+              this.apiClient.delete(`users/${item.username}`).then(this.search);
             }
           }
         }

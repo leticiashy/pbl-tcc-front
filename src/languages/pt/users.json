@@ -1,20 +1,30 @@
 {
   "USERS": {
-    "GRID": {
-      "NAME": "Nome",
-      "ROLE": "perfil",
-      "CREATED_AT": "Criado em"
-    },
+    "GRID": {},
     "FORM": {
       "TITLE": "Edição de usuários",
+      "PROFILE_TITLE": "Editar perfil",
       "NAMEPLACEHOLDER": "Escreva seu nome",
       "EMAILPLACEHOLDER": "Escreva seu email",
-      "ROLE": "Perfil",
-      "SUBMIT": "Gravar"
+      "FORGOT_PASSWORD_BTN": "Esqueci minha senha",
+      "CREATE_ACCOUNT_BTN": "Criar uma conta",
+      "EMAILPLACEHOLDER": "Digite seu endereço de e-mail",
+      "PASSWORDPLACEHOLDER": "Digite sua senha",
+      "SUBMIT": "Gravar",
+      "CANCEL": "Cancelar"
     },
     "LABEL": {
+      "CREATED_AT": "Criado em",
+      "EMAIL": "E-mail",
       "NAME": "Nome",
-      "EMAIL": "E-mail"
+      "PASSWORD_DUPLICATE": "Repita sua senha",
+      "PASSWORD": "Senha",
+      "PROFILE_EDIT": "Editar perfil",
+      "PROFILE_GRADES": "Eventos e Notas",
+      "PROFILE": "Perfil do usuário",
+      "ROLE": "Perfil",
+      "USERNAME": "Apelido",
+      "RATE": "Nota geral"
     }
   }
 }

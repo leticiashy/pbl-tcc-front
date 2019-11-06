@@ -1,6 +1,6 @@
 <template>
   <div class="application-wrapper">
-    <v-container id="pageLogin" class="login-wrapper elevation-2">
+    <v-container id="pageLogin" class="form-wrapper elevation-2">
       <v-form id="app" class="form" ref="loginForm" @submit="onLogin">
         <v-container fluid>
           <v-layout column>
@@ -152,7 +152,7 @@ export default {
   align-items: center;
   height: 100%;
 }
-.login-wrapper {
+.form-wrapper {
   max-width: 500px;
   height: 370px;
   background: #fafafa;
@@ -161,7 +161,7 @@ export default {
   display: flex;
 }
 
-.login-wrapper .form {
+.form-wrapper .form {
   width: 100%;
 }
 
@@ -173,13 +173,13 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .login-wrapper {
+  .form-wrapper {
     max-width: 70%;
   }
 }
 
 @media (max-width: 768px) {
-  .login-wrapper {
+  .form-wrapper {
     width: 750%;
     min-width: 350px;
   }

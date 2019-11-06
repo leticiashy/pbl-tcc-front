@@ -8,6 +8,9 @@ const AuthMixin = {
   },
   computed: {},
   methods: {
+    getUser: function() {
+      return this.authService.getCurrentUser();
+    },
     canShow: function(permissions = []) {
       if (permissions.length > 0) {
         const user = this.authService.getCurrentUser();

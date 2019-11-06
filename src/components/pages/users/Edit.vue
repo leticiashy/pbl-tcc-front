@@ -1,6 +1,6 @@
 <template>
   <div id="pageList">
-    <v-container id="pageLogin" class="login-wrapper elevation-2">
+    <v-container id="pageLogin" class="form-wrapper elevation-2">
       <v-form id="app" class="form" ref="userForm" @submit.prevent="onSubmit">
         <v-container fluid>
           <v-layout column>
@@ -43,19 +43,6 @@
               ></v-select>
             </v-flex>
           </v-layout>
-
-          <div v-if="errors.length > 0">
-            <v-alert
-              v-for="error in errors"
-              v-bind:key="error"
-              border="top"
-              color="red lighten-2"
-              dark
-              style="display: block"
-            >
-              {{ error }}
-            </v-alert>
-          </div>
 
           <v-layout row wrap justify-end>
             <v-btn dark large color="green" type="submit">
