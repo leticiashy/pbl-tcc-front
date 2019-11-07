@@ -167,7 +167,7 @@
               {{ $t("USERS.FORM.CANCEL") }}
             </v-btn>
 
-            <v-btn dark large color="green" type="submit">
+            <v-btn dark large color="black" type="submit">
               {{ $t("USERS.FORM.SUBMIT") }}
             </v-btn>
           </v-layout>

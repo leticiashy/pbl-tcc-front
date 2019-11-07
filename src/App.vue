@@ -4,12 +4,14 @@
     <router-view />
     <div class="error-wrapper" v-if="errors.length > 0">
       <v-alert
-        v-for="error in errors"
+        v-for="(error, index) in errors"
         v-bind:key="error.msg"
         border="top"
         :color="`${error.type === 'error' ? 'red' : 'orange'} lighten-2`"
+        class="error-item"
         dark
         style="display: block"
+        @click="removeError(index)"
         ><strong>{{ error.msg }}</strong></v-alert
       >
     </div>
@@ -112,12 +114,17 @@ export default {
           const now = new Date();
           const prev = new Date(message.date);
 
-          return Math.floor((now.getTime() - prev.getTime()) / 1000) < 15;
+          return Math.floor((now.getTime() - prev.getTime()) / 1000) <= 7;
         });
       }
-    }, 15000);
+    }, 1000);
   },
   methods: {
+    removeError: function(index) {
+      this.errors = this.errors.filter((message, ind) => {
+        return ind !== index;
+      });
+    },
     addMessage: function(obj) {
       const addDate = new Date();
       this.errors.push(Object.assign({}, obj, { date: addDate.toUTCString() }));
@@ -130,9 +137,27 @@ export default {
 .error-wrapper {
   position: absolute;
   width: 70vw;
+  max-width: 600px;
   right: 0;
   bottom: 0;
   padding: 5px;
   border-radius: 25%;
+}
+
+.error-item {
+  animation-duration: 0.7s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 </style>

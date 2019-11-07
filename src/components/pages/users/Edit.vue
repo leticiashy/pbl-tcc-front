@@ -45,7 +45,7 @@
           </v-layout>
 
           <v-layout row wrap justify-end>
-            <v-btn dark large color="green" type="submit">
+            <v-btn dark large color="black" type="submit">
               {{ $t("USERS.FORM.SUBMIT") }}
             </v-btn>
           </v-layout>

@@ -44,7 +44,7 @@
             <v-btn
               dark
               large
-              color="green"
+              color="black"
               type="submit"
               :loading="loading > 0"
             >
