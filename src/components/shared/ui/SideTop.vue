@@ -1,44 +1,33 @@
 <template>
-  <v-toolbar color="purple darken-2" fixed dark app>
-    <v-toolbar-title class="ml-0 pl-3">
+  <v-toolbar class="menu" color="gray darken-2" fixed dark app>
+    <v-toolbar-title class="ml-0 pl-3 hidden-md-and-up">
       <v-toolbar-side-icon
         @click.stop="handleDrawerToggle"
       ></v-toolbar-side-icon>
     </v-toolbar-title>
-    <v-spacer></v-spacer>
 
-    <v-menu
-      offset-y
-      origin="center center"
-      :nudge-bottom="10"
-      transition="scale-transition"
-    >
-      <v-btn icon flat slot="activator">
-        <v-avatar size="30px">
-          <img src="@/assets/img/user.png" alt="user" />
-        </v-avatar>
-      </v-btn>
-      <v-list class="pa-0">
-        <v-list-tile
-          v-for="(item, index) in items"
-          :disabled="item.disabled"
-          :href="item.href"
-          :key="index"
-          :target="item.target"
-          :to="!item.href ? { name: item.name } : null"
-          @click="item.click ? item.click : true"
-          rel="noopener"
-          ripple="ripple"
-        >
-          <v-list-tile-action v-if="item.icon">
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-menu>
+    <v-list class="horizontal-list pa-1 hidden-sm-and-down">
+      <v-list-tile
+        v-for="(item, index) in items"
+        v-show="item"
+        :disabled="item.disabled"
+        :href="item.path"
+        :key="index"
+        :target="item.target"
+        :to="!item.path ? { name: item.name } : null"
+        @click="item.click ? item.click : true"
+        rel="noopener"
+        ripple="ripple"
+        style="background: transparent"
+      >
+        <v-list-tile-action v-if="item.action">
+          <v-icon>{{ item.action }}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>{{ item.text }}</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
   </v-toolbar>
 </template>
 <script>
@@ -60,6 +49,22 @@ export default {
 </script>
 
 <style scoped>
+.menu {
+  padding-left: 0px !important;
+}
+
+.horizontal-list {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  background: transparent !important;
+}
+
+.horizontal-list .v-list__tile__action {
+  display: flex;
+  justify-content: center;
+}
+
 .flags {
   min-width: 30px;
   max-width: 30px;
@@ -69,5 +74,11 @@ export default {
   padding: 0 12px !important;
   align-items: center;
   display: flex;
+}
+</style>
+
+<style>
+.horizontal-list.v-list div a.v-list__tile--link.theme--dark:hover {
+  background: rgba(245, 245, 245, 0.15) !important;
 }
 </style>

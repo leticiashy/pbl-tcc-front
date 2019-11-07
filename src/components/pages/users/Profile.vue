@@ -14,7 +14,7 @@
                 class="profile-edit"
                 text
                 dark
-                color="deep-purple accent-4"
+                color="deep-gray accent-4"
                 @click="view = 'edit'"
                 >{{ $t("USERS.LABEL.PROFILE_EDIT") }}</v-btn
               >

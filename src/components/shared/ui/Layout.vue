@@ -31,35 +31,36 @@ export default {
   },
   computed: {
     accountItems() {
-      return [
-        {
-          icon: "account_circle",
-          href: "/users/profile",
-          title: this.$t("GLOBAL.PROFILE_USER")
-        },
-        {
-          icon: "exit_to_app",
-          href: "/login",
-          title: this.$t("GLOBAL.LOGOUT"),
-          click: () => {
-            store.commit("user/LOG_OUT");
-            window.getApp.$emit("APP_LOGOUT");
-          }
+      return this.itemsNavMenu.reduce((acc, nxt) => {
+        if (!nxt.items) {
+          return acc.concat(
+            Object.assign({}, nxt, {
+              text: nxt.title,
+              icon: nxt.action,
+              path: nxt.path
+            })
+          );
+        } else {
+          return acc.concat(
+            nxt.items.map(item => {
+              return item && !item.action ? Object.assign({}, nxt, item) : item;
+            })
+          );
         }
-      ];
+      }, []);
     },
     itemsNavMenu() {
       return [
         {
           path: "/resume",
           title: this.$t("GLOBAL.RESUME"),
-          action: "ti-home"
+          action: "home"
         },
 
         {
           path: "",
           title: this.$t("GLOBAL.USER_SECTION"),
-          action: "ti-user",
+          action: "list",
           items: [
             this.canShow(["admin", "manager"]) && {
               path: "/users/list",
@@ -75,7 +76,7 @@ export default {
         {
           path: "",
           title: this.$t("GLOBAL.EVENT_SECTION"),
-          action: "ti-agenda",
+          action: "description",
           items: [
             this.canShow(["admin", "manager", "user"]) && {
               path: "/events/list",
@@ -84,6 +85,28 @@ export default {
             this.canShow(["admin", "manager"]) && {
               path: "/events/add",
               text: this.$t("GLOBAL.ADD_EVENT")
+            }
+          ]
+        },
+
+        {
+          path: "",
+          title: this.$t("GLOBAL.ACCOUNT_SECTION"),
+          action: "account_circle",
+          items: [
+            this.canShow(["admin", "manager", "user"]) && {
+              action: "account_circle",
+              path: "/users/profile",
+              text: this.$t("GLOBAL.PROFILE_USER")
+            },
+            this.canShow(["admin", "manager", "user"]) && {
+              action: "exit_to_app",
+              path: "/login",
+              text: this.$t("GLOBAL.LOGOUT"),
+              click: () => {
+                store.commit("user/LOG_OUT");
+                window.getApp.$emit("APP_LOGOUT");
+              }
             }
           ]
         }

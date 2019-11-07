@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer
     id="appDrawer"
+    class="hidden-md-and-up"
     :mini-variant.sync="mini"
     fixed
     app

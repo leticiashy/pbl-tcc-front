@@ -182,6 +182,17 @@ export default {
 </script>
 
 <style scoped>
+.mi-dataTable thead,
+.mi-dataTable thead * {
+  background: rgba(125, 125, 125, 0.4) !important;
+  color: #fafafa !important;
+  font-size: 1rem;
+}
+
+.mi-dataTable thead bold {
+  font-weight: bold !important;
+}
+
 .mi-dataTable {
   table-layout: fixed !important;
 }
