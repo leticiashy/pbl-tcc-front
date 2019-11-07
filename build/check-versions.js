@@ -58,7 +58,7 @@ module.exports = function() {
       console.log("  " + warning);
     }
 
-    console.log();
-    process.exit(1);
+    // console.log();
+    // process.exit(1);
   }
 };
