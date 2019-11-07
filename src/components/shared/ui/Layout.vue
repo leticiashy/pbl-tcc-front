@@ -80,7 +80,8 @@ export default {
             },
             this.canShow(["admin", "manager"]) && {
               path: "/events/add",
-              text: this.$t("GLOBAL.ADD_EVENT")
+              text: this.$t("GLOBAL.ADD_EVENT"),
+              action: "playlist_add"
             }
           ]
         },

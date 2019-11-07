@@ -115,58 +115,63 @@ export default {
   },
   methods: {
     search: function() {
-      setTimeout(() => {
-        this.events = {
-          embedded: {
-            href: "/events"
-          },
-          data: [
-            {
-              title: "Semana tecnológica 2020",
-              active: true,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1"
+      this.apiClient
+        .get("events", false, false, false)
+        .then(resp => {
+          this.events = resp;
+        })
+        .catch(() => {
+          this.events = {
+            embedded: {
+              href: "/events"
             },
-            {
-              title: "Projeto final Redes",
-              active: false,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1",
-              additionalInfo: true
-            },
-            {
-              title: "Seminário de tecnologia e aprendizado",
-              active: true,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1"
-            },
-            {
-              title: "Projeto de matemática",
-              active: true,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1"
-            },
-            {
-              title: "Estruturas de dado e análise",
-              active: false,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1"
-            },
-            {
-              title: "Problemas práticos",
-              active: false,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1"
-            },
-            {
-              title: "Curso de Wordpress",
-              active: false,
-              inscriptions: Math.floor(Math.random() * 15),
-              link: "/event/1"
-            }
-          ]
-        };
-      }, 1500);
+            data: [
+              {
+                title: "Semana tecnológica 2020",
+                active: true,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1"
+              },
+              {
+                title: "Projeto final Redes",
+                active: false,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1",
+                additionalInfo: true
+              },
+              {
+                title: "Seminário de tecnologia e aprendizado",
+                active: true,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1"
+              },
+              {
+                title: "Projeto de matemática",
+                active: true,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1"
+              },
+              {
+                title: "Estruturas de dado e análise",
+                active: false,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1"
+              },
+              {
+                title: "Problemas práticos",
+                active: false,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1"
+              },
+              {
+                title: "Curso de Wordpress",
+                active: false,
+                inscriptions: Math.floor(Math.random() * 15),
+                link: "/event/1"
+              }
+            ]
+          };
+        });
     }
   }
 };

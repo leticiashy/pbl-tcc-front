@@ -15,7 +15,7 @@
               </v-flex>
             </v-layout>
 
-            <v-flex>
+            <!-- <v-flex>
               <v-text-field
                 :label="$t('CREATE_ACCOUNT.LABEL.NAME')"
                 v-model="login.name"
@@ -24,7 +24,7 @@
                 id="name"
                 :rules="[rules.required]"
               ></v-text-field>
-            </v-flex>
+            </v-flex> -->
 
             <v-flex>
               <v-text-field
