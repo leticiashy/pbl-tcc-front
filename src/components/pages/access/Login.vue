@@ -156,10 +156,19 @@ export default {
 .form-wrapper {
   max-width: 500px;
   height: 370px;
-  background: #fafafa;
+  background: rgba(255, 255, 255, 0.15);
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+@media (max-width: 600px) {
+  .form-wrapper {
+    align-content: flex-start;
+    align-items: flex-start;
+    max-width: 100vw !important;
+    height: 100vh !important;
+  }
 }
 
 .form-wrapper .form {
