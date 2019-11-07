@@ -10,6 +10,7 @@
       "CREATE_ACCOUNT_BTN": "Criar uma conta",
       "EMAILPLACEHOLDER": "Digite seu endereço de e-mail",
       "PASSWORDPLACEHOLDER": "Digite sua senha",
+      "ROLE": "Perfil de acesso",
       "SUBMIT": "Gravar",
       "CANCEL": "Cancelar"
     },
@@ -22,9 +23,9 @@
       "PROFILE_EDIT": "Editar perfil",
       "PROFILE_GRADES": "Eventos e Notas",
       "PROFILE": "Perfil do usuário",
-      "ROLE": "Perfil",
       "USERNAME": "Apelido",
-      "RATE": "Nota geral"
+      "RATE": "Nota geral",
+      "ROLE": "Perfil de acesso"
     }
   }
 }

@@ -53,11 +53,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.paramsReady = true;
-    }, 2000);
-
-    this.apiClient.get("company").then(resp => {
-      this.data = resp.data;
-    });
+    }, 1000);
   },
   data() {
     return {

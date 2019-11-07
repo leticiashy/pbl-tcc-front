@@ -1,0 +1,19 @@
+{
+  "EVENTS": {
+    "GRID": {},
+    "FORM": {
+      "TITLE": "Edição de eventos",
+      "PROFILE_TITLE": "Editar evento",
+      "NAMEPLACEHOLDER": "Escreva o titulo do evento",
+      "SUBMIT": "Gravar",
+      "CANCEL": "Cancelar"
+    },
+    "LABEL": {
+      "NAME": "Título",
+      "STATUS": "Status",
+      "INSCRIPTIONS": "Inscrições",
+      "CREATED_AT": "Criado em",
+      "NEED_ADDITIONAL": "Requer adicionais"
+    }
+  }
+}

@@ -65,10 +65,6 @@ export default {
             this.canShow(["admin", "manager"]) && {
               path: "/users/list",
               text: this.$t("GLOBAL.LIST_USER")
-            },
-            this.canShow(["admin", "manager", "user"]) && {
-              path: "/users/profile",
-              text: this.$t("GLOBAL.PROFILE_USER")
             }
           ]
         },

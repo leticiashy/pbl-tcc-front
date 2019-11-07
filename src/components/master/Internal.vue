@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-content style="padding: 64px 0px 0px 0px">
     <layout />
     <v-container>
       <router-view />

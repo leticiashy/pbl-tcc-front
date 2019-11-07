@@ -7,6 +7,7 @@
             :title="$t('GLOBAL.LIST_USER')"
             :headers="headers"
             :data="data"
+            hide-actions
           />
         </v-flex>
       </v-layout>
@@ -68,6 +69,9 @@ export default {
                   "GLOBAL.EDIT"
                 )} </a>`
               : "";
+          },
+          click: item => {
+            this.$router.push(`/users/${item.username}/edit`);
           }
         },
         {

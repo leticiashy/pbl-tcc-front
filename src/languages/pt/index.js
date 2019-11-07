@@ -4,5 +4,6 @@ export default Object.assign(
   require("./global-error.json"),
   require("./login.json"),
   require("./create-account.json"),
-  require("./users.json")
+  require("./users.json"),
+  require("./events.json")
 );

@@ -11,6 +11,8 @@ import UserList from "@/components/pages/users/List";
 import UserEdit from "@/components/pages/users/Edit";
 import UserProfile from "@/components/pages/users/Profile";
 
+import EventList from "@/components/pages/events/List";
+
 import Login from "@/components/pages/access/Login";
 import CreateAccount from "@/components/pages/access/CreateAccount";
 
@@ -83,7 +85,7 @@ const router = new Router({
             {
               path: "/events/list",
               name: "EventList",
-              component: Empty
+              component: EventList
             },
             {
               path: "/events/add",

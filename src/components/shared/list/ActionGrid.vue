@@ -15,6 +15,7 @@
           :items="data"
           :pagination.sync="pagination"
           :hide-actions="hideActions"
+          :hide-headers="hideHeaders"
           :rows-per-page-items="rowsPerPageItems"
           :total-items="serverSide ? totalItems : null"
           :must-sort="!serverSide"
@@ -123,6 +124,10 @@ export default {
       default: false
     },
     hideActions: {
+      type: Boolean,
+      default: false
+    },
+    hideHeaders: {
       type: Boolean,
       default: false
     },
