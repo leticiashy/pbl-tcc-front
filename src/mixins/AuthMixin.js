@@ -20,6 +20,11 @@ const AuthMixin = {
 
       return true;
     },
+    isOwner: function(user_id) {
+      const user = this.authService.getCurrentUser();
+
+      return user.id === user_id;
+    },
     validateRole(role = "") {
       const user = this.authService.getCurrentUser();
 

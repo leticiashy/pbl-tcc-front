@@ -7,7 +7,9 @@ const mockedStore = {
 };
 
 export default class ApiClient {
-  constructor() {}
+  constructor(baseURL) {
+    this.baseURL = baseURL || process.env.API_BASE_URL;
+  }
 
   getStore() {
     // IPC(*): Precisa disso pois certas páginas carregam o ApiClient antes de instanciar o Vue
@@ -89,7 +91,7 @@ export default class ApiClient {
       Vue.http.interceptors.push(this.setLangInterceptor());
       Vue.http({
         method: method,
-        url: `${process.env.API_BASE_URL}${url}`,
+        url: `${this.baseURL}${url}`,
         body: bodyToSend,
         headers: headers
       })
@@ -141,44 +143,5 @@ export default class ApiClient {
         Vue.$globalEvent.$emit("httpError", error);
       }
     }
-  }
-
-  downLoadFile(
-    path,
-    fileName = "export.csv",
-    contentType = "text/csv; charset=utf-8"
-  ) {
-    Vue.http
-      .get(`${process.env.VUE_APP_BASE_URI}${path}`, {
-        responseType: "arraybuffer",
-        headers: this.setHeaders(false, false)
-      })
-      .then(response => {
-        if (response.data) {
-          this.makeDownLoadFile(response.data, fileName, contentType);
-        }
-      });
-  }
-
-  /**
-   * Methodo usado para fazer download do Arquivo
-   * @param data - Array Buffer do arquivo
-   * @param type - tipo do arquivo.
-   */
-  makeDownLoadFile(data, fileName, type) {
-    const a = document.createElement("a");
-    document.body.appendChild(a);
-
-    const blob = new Blob([data], { type: type });
-    const url = window.URL.createObjectURL(blob);
-
-    a.href = url;
-    a.download = fileName;
-    a.click();
-
-    setTimeout(() => {
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    }, 0);
   }
 }

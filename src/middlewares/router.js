@@ -12,6 +12,7 @@ import UserEdit from "@/components/pages/users/Edit";
 import UserProfile from "@/components/pages/users/Profile";
 
 import EventList from "@/components/pages/events/List";
+import EventCreate from "@/components/pages/events/Create";
 
 import Login from "@/components/pages/access/Login";
 import CreateAccount from "@/components/pages/access/CreateAccount";
@@ -89,8 +90,8 @@ const router = new Router({
             },
             {
               path: "/events/add",
-              name: "EventAdd",
-              component: Empty
+              name: "EventCreate",
+              component: EventCreate
             },
             {
               path: "/events/:id/show",

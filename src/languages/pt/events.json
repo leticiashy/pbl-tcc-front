@@ -5,6 +5,7 @@
       "TITLE": "Edição de eventos",
       "PROFILE_TITLE": "Editar evento",
       "NAMEPLACEHOLDER": "Escreva o titulo do evento",
+      "ADD_TITLE": "Criação de eventos",
       "SUBMIT": "Gravar",
       "CANCEL": "Cancelar"
     },
@@ -13,7 +14,10 @@
       "STATUS": "Status",
       "INSCRIPTIONS": "Inscrições",
       "CREATED_AT": "Criado em",
-      "NEED_ADDITIONAL": "Requer adicionais"
+      "NEED_ADDITIONAL": "Requer atenção adicional",
+      "AREAS": "Areas de domínio",
+      "ADDITIONAL_DATA": "Adicione material de referência para os alunos",
+      "ADDITIONAL_DATA_INFO": "Material de apoio, clique para fazer o download"
     }
   }
 }

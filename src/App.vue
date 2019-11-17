@@ -39,6 +39,8 @@ export default {
       if (error) {
         if (error.status) {
           if (error.showException && error.status === 401) {
+            this.$router.push("/login");
+
             if (error.body && error.body.detail) {
               this.addMessage({
                 type: "warning",
@@ -47,22 +49,21 @@ export default {
             } else {
               this.addMessage({
                 type: "warning",
-                msg: this.$t("INFRA.HTTP.ACCESS_DENIED_MESSAGE")
+                msg: this.$t("GLOBAL.HTTP.ACCESS_DENIED_MESSAGE")
               });
             }
-            this.router.push("/login");
           } else if (error.showException && error.status === 403) {
             this.addMessage({
               type: "warning",
-              msg: this.$t("INFRA.HTTP.ACCESS_DENIED_MESSAGE")
+              msg: this.$t("GLOBAL.HTTP.ACCESS_DENIED_MESSAGE")
             });
-            this.router.push("/login");
+            this.$router.push("/login");
           } else if (error.showException && error.status === 412) {
             this.addMessage({
               type: "warning",
-              msg: this.$t("INFRA.HTTP.SESSION_EXPIRED_MESSAGE")
+              msg: this.$t("GLOBAL.HTTP.SESSION_EXPIRED_MESSAGE")
             });
-            this.router.push("/login");
+            this.$router.push("/login");
           } else if (error.showException && error.status === 409) {
             this.addMessage({
               type: "warning",
@@ -72,7 +73,7 @@ export default {
             error.showException &&
             error.status === 422 &&
             error.body.errors &&
-            error.body.errors.length > 1
+            error.body.errors.length > 0
           ) {
             for (let i = 0; i < error.body.errors.length; i++) {
               this.addMessage({
