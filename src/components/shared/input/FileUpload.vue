@@ -31,7 +31,7 @@
         {{ $t("GLOBAL.UPLOAD_NEW") }}
       </v-btn>
 
-      <div class="dropbox sent">
+      <div class="dropbox sent" v-if="fileFormat && fileName">
         <a :href="value" target="_blank">
           <div :class="`box ${fileFormat}`">
             <h3 class="format">
@@ -41,6 +41,25 @@
 
           <div class="link-text">
             {{ fileName }}
+          </div>
+        </a>
+      </div>
+
+      <div class="dropbox sent" v-else>
+        <a
+          v-for="(file, index) in value"
+          v-bind:key="index"
+          :href="file"
+          target="_blank"
+        >
+          <div :class="`box ${extractFileFormat(file)}`">
+            <h3 class="format">
+              {{ extractFileFormat(file) }}
+            </h3>
+          </div>
+
+          <div class="link-text">
+            {{ extractFileName(file) }}
           </div>
         </a>
       </div>
@@ -65,7 +84,7 @@ export default {
       filesToUpload: [],
       currentStatus: null,
       uploadFieldName: "files",
-      apiClient: new ApiClient(process.env.BUCKET_BASE_URL)
+      apiClient: new ApiClient(process.env.BUCKET_BASE_URL),
     };
   },
   computed: {
@@ -82,17 +101,15 @@ export default {
       return this.currentStatus === STATUS_FAILED;
     },
     fileName() {
-      return this.value.split("/").pop();
+      return this.value && !Array.isArray(this.value)
+        ? this.extractFileName(this.value)
+        : null;
     },
     fileFormat() {
-      const fileFormat = this.value.split(".").pop();
-
-      if (fileFormat.length <= 3) {
-        return fileFormat;
-      } else {
-        return "unk";
-      }
-    }
+      return this.value && !Array.isArray(this.value)
+        ? this.extractFileFormat(this.value)
+        : null;
+    },
   },
   methods: {
     reset() {
@@ -113,8 +130,20 @@ export default {
         console.log(response);
         this.$emit("input", response.location);
       });
-    }
-  }
+    },
+    extractFileName(file) {
+      return file.split("/").pop();
+    },
+    extractFileFormat(file) {
+      const fileFormat = file.split(".").pop();
+
+      if (fileFormat.length <= 3) {
+        return fileFormat;
+      } else {
+        return "unk";
+      }
+    },
+  },
 };
 </script>
 
@@ -149,6 +178,8 @@ export default {
   padding: 15px;
   display: flex;
   justify-content: end;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .dropbox p {
@@ -159,12 +190,31 @@ export default {
 
 .dropbox .link-text {
   max-width: 150px;
+  max-height: 50px;
   text-overflow: ellipsis;
-  word-wrap: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: break-all;
+  hyphens: auto;
 }
 
 .dropbox a {
   align-self: flex-end;
+  height: 200px;
+  width: 150px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.dropbox a:hover {
+  height: 210px;
+  width: 160px;
+  transition: height 0.25s ease-in;
+  transition: width 0.25s ease-in;
 }
 
 .dropbox .box {

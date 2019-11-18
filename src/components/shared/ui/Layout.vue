@@ -16,7 +16,7 @@ import SideTop from "@/components/shared/ui/SideTop";
 export default {
   components: {
     SideLeft,
-    SideTop
+    SideTop,
   },
   data() {
     return {
@@ -25,8 +25,8 @@ export default {
       snackbar: {
         show: false,
         text: "",
-        color: ""
-      }
+        color: "",
+      },
     };
   },
   computed: {
@@ -37,7 +37,7 @@ export default {
             Object.assign({}, nxt, {
               text: nxt.title,
               icon: nxt.action,
-              path: nxt.path
+              path: nxt.path,
             })
           );
         } else {
@@ -54,7 +54,7 @@ export default {
         {
           path: "/resume",
           title: this.$t("GLOBAL.RESUME"),
-          action: "home"
+          action: "home",
         },
 
         {
@@ -64,9 +64,9 @@ export default {
           items: [
             this.canShow(["admin", "manager"]) && {
               path: "/users/list",
-              text: this.$t("GLOBAL.LIST_USER")
-            }
-          ]
+              text: this.$t("GLOBAL.LIST_USER"),
+            },
+          ],
         },
 
         {
@@ -76,14 +76,14 @@ export default {
           items: [
             this.canShow(["admin", "manager", "user"]) && {
               path: "/events/list",
-              text: this.$t("GLOBAL.LIST_EVENT")
+              text: this.$t("GLOBAL.LIST_EVENT"),
             },
             this.canShow(["admin", "manager"]) && {
               path: "/events/add",
               text: this.$t("GLOBAL.ADD_EVENT"),
-              action: "playlist_add"
-            }
-          ]
+              action: "playlist_add",
+            },
+          ],
         },
 
         {
@@ -94,7 +94,7 @@ export default {
             this.canShow(["admin", "manager", "user"]) && {
               action: "account_circle",
               path: "/users/profile",
-              text: this.$t("GLOBAL.PROFILE_USER")
+              text: this.$t("GLOBAL.PROFILE_USER"),
             },
             this.canShow(["admin", "manager", "user"]) && {
               action: "exit_to_app",
@@ -103,16 +103,16 @@ export default {
               click: () => {
                 store.commit("user/LOG_OUT");
                 window.getApp.$emit("APP_LOGOUT");
-              }
-            }
-          ]
-        }
+              },
+            },
+          ],
+        },
       ];
-    }
+    },
   },
   created() {
     window.getApp = this;
-  }
+  },
 };
 </script>
 

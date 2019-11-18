@@ -3,7 +3,7 @@ import Vue from "vue";
 import LanguagesManager from "@/services/LanguagesManager";
 
 const mockedStore = {
-  commit: () => {}
+  commit: () => {},
 };
 
 export default class ApiClient {
@@ -31,7 +31,7 @@ export default class ApiClient {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-      showLoading: showLoading ? "1" : "0" // tem q ser string
+      showLoading: showLoading ? "1" : "0", // tem q ser string
     };
 
     if (removeContentType) {
@@ -93,12 +93,14 @@ export default class ApiClient {
         method: method,
         url: `${this.baseURL}${url}`,
         body: bodyToSend,
-        headers: headers
+        headers: headers,
       })
         .then(resp => {
           if (Vue.$globalEvent) {
             Vue.$globalEvent.$emit("httpRequestEnd", resp.body || resp);
           }
+
+          this.handleSuccess(resp, method, showException);
 
           event.response = resp;
           store.commit("loader/FINISH_LOADING", event);
@@ -135,12 +137,22 @@ export default class ApiClient {
     return this.callWS("DELETE", url, null, showException, showLoading);
   }
 
+  handleSuccess(resp, operation = "operation", showException = true) {
+    if (resp && ["POST", "PUT", "DELETE"].includes(operation)) {
+      resp.operation = operation;
+      resp.showException = showException;
+      if (Vue.$globalEvent) {
+        Vue.$globalEvent.$emit("httpResponse", resp);
+      }
+    }
+  }
+
   handleError(error, operation = "operation", showException = true) {
     if (error) {
       error.operation = operation;
       error.showException = showException;
       if (Vue.$globalEvent) {
-        Vue.$globalEvent.$emit("httpError", error);
+        Vue.$globalEvent.$emit("httpResponse", error);
       }
     }
   }

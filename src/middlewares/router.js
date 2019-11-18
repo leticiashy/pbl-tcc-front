@@ -7,13 +7,6 @@ import Internal from "@/components/master/Internal";
 
 import Resume from "@/components/pages/dashboard/Resume";
 
-import UserList from "@/components/pages/users/List";
-import UserEdit from "@/components/pages/users/Edit";
-import UserProfile from "@/components/pages/users/Profile";
-
-import EventList from "@/components/pages/events/List";
-import EventCreate from "@/components/pages/events/Create";
-
 import Login from "@/components/pages/access/Login";
 import CreateAccount from "@/components/pages/access/CreateAccount";
 
@@ -29,25 +22,25 @@ const router = new Router({
     {
       path: "/login",
       name: "login",
-      component: Login
+      component: Login,
     },
     {
       path: "/create-account",
       name: "create-account",
-      component: CreateAccount
+      component: CreateAccount,
     },
     {
       path: "/",
       name: "Internal",
       component: Internal,
       meta: {
-        context: ["user", "manager", "admin"]
+        context: ["user", "manager", "admin"],
       },
       children: [
         {
           path: "/resume",
           name: "Resume",
-          component: Resume
+          component: Resume,
         },
 
         {
@@ -58,24 +51,24 @@ const router = new Router({
             {
               path: "/users/list",
               name: "UserList",
-              component: UserList
+              component: () => import("@/components/pages/users/List"),
             },
             {
               path: "/users/profile",
               name: "UserProfile",
-              component: UserProfile
+              component: () => import("@/components/pages/users/Profile"),
             },
             {
               path: "/users/:username/show",
               name: "UserShow",
-              component: Empty
+              component: Empty,
             },
             {
               path: "/users/:username/edit",
               name: "UserEdit",
-              component: UserEdit
-            }
-          ]
+              component: () => import("@/components/pages/users/Edit"),
+            },
+          ],
         },
 
         {
@@ -86,32 +79,42 @@ const router = new Router({
             {
               path: "/events/list",
               name: "EventList",
-              component: EventList
+              component: () => import("@/components/pages/events/List"),
+            },
+            {
+              path: "/events/area/:areaName",
+              name: "EventByArea",
+              component: () => import("@/components/pages/events/ListBy"),
+            },
+            {
+              path: "/events/area/:areaName/files",
+              name: "EventByArea",
+              component: () => import("@/components/pages/files/Show"),
             },
             {
               path: "/events/add",
               name: "EventCreate",
-              component: EventCreate
+              component: () => import("@/components/pages/events/Create"),
             },
             {
-              path: "/events/:id/show",
+              path: "/events/:id",
               name: "EventShow",
-              component: Empty
+              component: () => import("@/components/pages/events/Show"),
             },
             {
               path: "/events/:id/edit",
               name: "EventEdit",
-              component: Empty
-            }
-          ]
-        }
-      ]
+              component: Empty,
+            },
+          ],
+        },
+      ],
     },
     {
       path: "*",
-      redirect: "/resume"
-    }
-  ]
+      redirect: "/resume",
+    },
+  ],
 });
 
 router.beforeEach((to, from, next) => {
@@ -139,7 +142,7 @@ router.beforeEach((to, from, next) => {
       } else {
         next({
           path: "/login",
-          query: { returnUrl: to.fullPath }
+          query: { returnUrl: to.fullPath },
         });
         return;
       }

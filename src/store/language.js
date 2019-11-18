@@ -1,6 +1,6 @@
 export const state = {
   globalLocale: null,
-  actualLang: null
+  actualLang: null,
 };
 
 export const mutations = {
@@ -10,7 +10,7 @@ export const mutations = {
   },
   "language/SET_LOCALE": function(state, payload) {
     state.globalLocale = payload;
-  }
+  },
 };
 
 export const actions = {
@@ -19,5 +19,5 @@ export const actions = {
   },
   setActualLanguage: function(store, payload) {
     store.commit("language/SET_LANGUAGE", payload);
-  }
+  },
 };

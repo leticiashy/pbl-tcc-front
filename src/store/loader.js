@@ -1,6 +1,6 @@
 export const state = {
   loading: 0,
-  longLoading: 0
+  longLoading: 0,
 };
 
 export const mutations = {
@@ -19,7 +19,7 @@ export const mutations = {
   },
   "loader/FINISH_LONG_LOADING": function(state) {
     state.longLoading = state.longLoading - 1;
-  }
+  },
 };
 
 export const actions = {
@@ -28,5 +28,5 @@ export const actions = {
   },
   stopLongLoading: function(store) {
     store.commit("loader/FINISH_LONG_LOADING");
-  }
+  },
 };

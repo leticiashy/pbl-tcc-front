@@ -35,6 +35,8 @@
     "LIST_EVENT": "Ver eventos",
     "ADD_EVENT": "Criar eventos",
     "FINISH_EVENT": "Finalizar evento",
+    "ENTER_EVENT": "Entrar no evento",
+    "USER_IN": "Você já está inscrito",
     "START_EVENT": "Iniciar evento",
     "PROFILE_USER": "Ver perfil",
     "UPLOAD_DEFAULT_MESSAGE": "<h2>Arraste ou clique para adicionar novos arquivos.</h2><br /> Para enviar múltiplos arquivos, por favor compacte em um .zip ou .rar",
@@ -42,7 +44,8 @@
     "UPLOAD_NEW": "Enviar novo arquivo",
     "HTTP": {
       "ACCESS_DENIED_MESSAGE": "Ocorreu um erro durante a autorização",
-      "SESSION_EXPIRED_MESSAGE": "Acesso expirado, tente novamente"
+      "SESSION_EXPIRED_MESSAGE": "Acesso expirado, tente novamente",
+      "OPERATION_SUCCESS": "Operação concluída com sucesso"
     }
   }
 }

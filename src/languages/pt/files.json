@@ -1,0 +1,10 @@
+{
+  "FILES": {
+    "GRID": {},
+    "FORM": {},
+    "LABEL": {
+      "LIST": "Biblioteca de $areaName",
+      "OPEN_LIBRARY": "Clique aqui para ver a biblioteca completa dessa área"
+    }
+  }
+}

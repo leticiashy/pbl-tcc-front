@@ -8,6 +8,15 @@
               <p class="display-2 text--primary">
                 {{ $t("EVENTS.LABEL.LIST") }}
               </p>
+
+              <v-btn
+                dark
+                large
+                color="green"
+                @click.prevent="navigateToFiles()"
+              >
+                {{ $t("FILES.LABEL.OPEN_LIBRARY") }}
+              </v-btn>
             </v-flex>
 
             <v-flex pa-2 v-if="events.data.length">
@@ -27,7 +36,7 @@
                             primary
                             v-for="area in areasToList(event.areas)"
                             v-bind:key="area"
-                            @click="navigateToArea(area)"
+                            @click.prevent="navigateToArea(area)"
                           >
                             {{ area }}
                           </v-chip>
@@ -84,6 +93,7 @@ export default {
       let url = this.$route.params.areaName
         ? `events/area/${this.$route.params.areaName}`
         : "events";
+
       this.apiClient.get(url).then(resp => {
         this.events.data = resp;
       });
@@ -91,6 +101,10 @@ export default {
     navigateToArea: function(name) {
       this.events.data = [];
       this.$router.push(`/events/area/${name}`);
+      this.search();
+    },
+    navigateToFiles: function() {
+      this.$router.push(`/events/area/${this.$route.params.areaName}/files`);
     },
     areasToList(areas = "") {
       return areas.split(",");

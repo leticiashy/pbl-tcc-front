@@ -32,7 +32,7 @@
                   header.sortable !== false ? 'sortable' : '',
                   header.value === pagination.sortBy
                     ? 'active ' + (pagination.direction || '')
-                    : ''
+                    : '',
                 ]"
                 @click.prevent="changeSort(header.value, header.sortable)"
               >
@@ -68,7 +68,7 @@
                 :class="{
                   'text-xs-right': header.aling === 'right' || index !== 0,
                   'text-xs-left': header.aling === 'left' || index !== 0,
-                  first: index === 0
+                  first: index === 0,
                 }"
                 v-html="
                   header.customTemplate
@@ -91,22 +91,22 @@ export default {
   props: {
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     headers: {
       type: Array,
       default: function() {
         return [];
-      }
+      },
     },
     data: {
       type: Array,
       default: function() {
         return [];
-      }
+      },
     },
     rowsPerPageItems: {
-      type: Array
+      type: Array,
     },
     value: {
       type: Object,
@@ -115,25 +115,25 @@ export default {
           sortBy: null,
           direction: null,
           page: 1,
-          rowsPerPage: 25
+          rowsPerPage: 25,
         };
-      }
+      },
     },
     serverSide: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hideActions: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hideHeaders: {
       type: Boolean,
-      default: false
+      default: false,
     },
     totalItems: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   watch: {
     pagination: {
@@ -145,19 +145,19 @@ export default {
         }
 
         this.$emit("input", newVal);
-      }
+      },
     },
     value: {
       deep: true,
       immediate: true,
       handler: function(newVal) {
         this.pagination = newVal;
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      pagination: this.value
+      pagination: this.value,
     };
   },
   methods: {
@@ -181,8 +181,8 @@ export default {
       }
 
       this.$emit("changeSort", column, sortable, this.pagination);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -53,34 +53,34 @@
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 export default {
   components: {
-    VuePerfectScrollbar
+    VuePerfectScrollbar,
   },
   props: {
     expanded: {
       type: Boolean,
-      default: true
+      default: true,
     },
     items: {
       type: Array,
       default: function() {
         return [];
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       mini: false,
       drawer: true,
       scrollSettings: {
-        maxScrollbarLength: 160
-      }
+        maxScrollbarLength: 160,
+      },
     };
   },
   created() {
     window.getApp.$on("APP_DRAWER_TOGGLED", () => {
       this.drawer = !this.drawer;
     });
-  }
+  },
 };
 </script>
 <style>

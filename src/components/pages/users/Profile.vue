@@ -64,19 +64,11 @@
                     </v-flex>
                   </v-layout>
                 </v-flex>
+
                 <v-flex md8 sm6 xs12 pa-1>
                   <action-grid
-                    title="Desafios abertos"
-                    :headers="nonActiveHeaders"
-                    :data="globalEvents.data"
-                    hide-headers
-                    hide-actions
-                  />
-                </v-flex>
-                <v-flex md2 sm3 xs12 pa-1>
-                  <action-grid
                     title="Desafios em progresso"
-                    :headers="activeHeaders"
+                    :headers="dataHeaders"
                     :data="activeData"
                     hide-headers
                     hide-actions
@@ -87,8 +79,17 @@
 
                   <action-grid
                     title="Desafios passados"
-                    :headers="nonActiveHeaders"
+                    :headers="dataHeaders"
                     :data="nonActiveData"
+                    hide-headers
+                    hide-actions
+                  />
+                </v-flex>
+                <v-flex md2 sm3 xs12 pa-1>
+                  <action-grid
+                    title="Desafios abertos"
+                    :headers="dataHeaders"
+                    :data="globalEvents"
                     hide-headers
                     hide-actions
                   />
@@ -156,7 +157,7 @@
                 id="password"
                 type="password"
                 :rules="[
-                  val => val === data.password || $t('GLOBAL_ERROR.PASSWORD')
+                  val => val === data.password || $t('GLOBAL_ERROR.PASSWORD'),
                 ]"
               ></v-text-field>
             </v-flex>
@@ -187,11 +188,13 @@ import LinearStatistic from "@/components/shared/statistic/LinearStatistic";
 
 import ActionGrid from "@/components/shared/list/ActionGrid";
 
+import UserService from "@/services/UserService";
+
 export default {
   mixins: [ApiClientMixin, ValidationMixin],
   components: {
     LinearStatistic,
-    ActionGrid
+    ActionGrid,
   },
   mounted() {
     this.getData();
@@ -199,160 +202,68 @@ export default {
   watch: {
     view: function() {
       this.getData();
-    }
+    },
   },
   data() {
     return {
       paramsReady: false,
       color: Material,
-      globalEvents: {
-        data: []
-      },
+      globalEvents: [],
+      userEvents: [],
       data: {
         email: null,
         password: null,
         username: null,
-        name: null
+        name: null,
       },
       errors: [],
-      view: "show"
+      view: "show",
     };
   },
   computed: {
-    activeHeaders: function() {
-      return [
-        {
-          name: "title",
-          text: "Eventos",
-          align: "left",
-          sortable: false,
-          customTemplate: props => {
-            return `<a href="${props.link}">${props.title}</a>`;
-          },
-          click: props => {
-            this.$router.push(props.link);
-          }
-        }
-      ];
-    },
     activeData: function() {
-      return this.data && this.data.userEvents
-        ? this.data.userEvents.filter(x => x.active)
+      return this.data && this.userEvents
+        ? this.userEvents.filter(x => x.active)
         : [];
     },
-    nonActiveHeaders: function() {
+    dataHeaders: function() {
       return [
         {
-          name: "title",
+          name: "name",
           text: "Eventos",
           align: "left",
           sortable: false,
           customTemplate: props => {
-            return `<a href="${props.link}">${props.title}</a>`;
+            return `<a href="/events/${props.id}">${props.name}</a>`;
           },
           click: props => {
-            this.$router.push(props.link);
-          }
-        }
+            this.$router.push(`/events/${props.id}`);
+          },
+        },
       ];
     },
     nonActiveData: function() {
-      return this.data && this.data.userEvents
-        ? this.data.userEvents.filter(x => !x.active)
+      return this.data && this.userEvents
+        ? this.userEvents.filter(x => !x.active)
         : [];
-    }
+    },
   },
   methods: {
     getData: function() {
-      const user = this.getUser();
+      const $context = this;
+
+      const user = $context.getUser();
 
       if (user.username) {
-        this.apiClient.get(`users/${user.username}`).then(resp => {
-          this.data = resp;
-          this.data.rate = 1200;
-          this.data.grades = [
-            {
-              subheading: "Lógica de programação e algoritmos",
-              value: 2
-            },
-            {
-              subheading: "Redes",
-              value: 7.5
-            },
-            {
-              subheading: "Matemática",
-              value: 5
-            }
-          ];
-          this.globalEvents = {
-            embedded: {
-              href: "/events"
-            },
-            data: [
-              {
-                title: "Semana tecnológica 2020",
-                active: true,
-                link: "/event/1"
-              },
-              {
-                title: "Projeto final Redes",
-                active: false,
-                link: "/event/1"
-              },
-              {
-                title: "Seminário de tecnologia e aprendizado",
-                active: true,
-                link: "/event/1"
-              },
-              {
-                title: "Projeto de matemática",
-                active: true,
-                link: "/event/1"
-              },
-              {
-                title: "Estruturas de dado e análise",
-                active: false,
-                link: "/event/1"
-              },
-              {
-                title: "Problemas práticos",
-                active: false,
-                link: "/event/1"
-              },
-              {
-                title: "Curso de Wordpress",
-                active: false,
-                link: "/event/1"
-              }
-            ]
-          };
-          this.data.userEvents = [
-            {
-              title: "Semana tecnológica 2020",
-              active: true,
-              link: "/event/1"
-            },
-            {
-              title: "Estruturas de dado e análise",
-              active: false,
-              link: "/event/1"
-            },
-            {
-              title: "Projeto final Redes",
-              active: false,
-              link: "/event/1"
-            },
-            {
-              title: "Seminário de tecnologia e aprendizado",
-              active: true,
-              link: "/event/1"
-            },
-            {
-              title: "Projeto de matemática",
-              active: true,
-              link: "/event/1"
-            }
-          ];
+        Promise.all([
+          UserService.getData(),
+          $context.apiClient.get(`events`),
+        ]).then(([resp, events]) => {
+          $context.data = resp;
+
+          $context.globalEvents = events;
+
+          $context.userEvents = resp.eventsIn;
         });
       }
     },
@@ -364,8 +275,8 @@ export default {
             this.view = "show";
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

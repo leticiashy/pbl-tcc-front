@@ -19,7 +19,7 @@
               v-for="(header, index) in headers"
               :class="{
                 'text-xs-right': header.aling === 'right' || index !== 0,
-                'text-xs-left': header.aling === 'left' || index !== 0
+                'text-xs-left': header.aling === 'left' || index !== 0,
               }"
               v-bind:key="header.value"
               v-html="
@@ -40,16 +40,16 @@ export default {
   props: {
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     headers: {
-      type: Array
+      type: Array,
     },
     data: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 };
 </script>
 

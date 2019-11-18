@@ -34,18 +34,18 @@ new Vue({
   store,
   i18n,
   components: {
-    App
+    App,
   },
   template: "<App/>",
   data: function() {
     return {
-      timer: ""
+      timer: "",
     };
   },
   mounted() {
     store.commit("loader/FINISH_LONG_LOADING");
     store.commit("application/LOAD_APPLICATION_END");
-  }
+  },
 });
 
 window.getMessage = error => {

@@ -1,5 +1,6 @@
 import ApiClient from "@/services/ApiClient";
 import TokenService from "@/services/TokenService";
+import UserService from "@/services/UserService";
 
 const CURRENT_USER_STORAGE = "current_user";
 const CURRENT_SETTINGS_STORAGE = "company_settings";
@@ -9,7 +10,7 @@ const ANONYMOUS_USER = {
   email: undefined,
   name: undefined,
   token: undefined,
-  roles: "none"
+  roles: "none",
 };
 
 export default class AuthService {
@@ -17,21 +18,12 @@ export default class AuthService {
     this.apiClient = new ApiClient();
   }
 
-  setCurrentUser(user = ANONYMOUS_USER) {
-    localStorage.setItem(CURRENT_USER_STORAGE, JSON.stringify(user));
+  setCurrentUser(user) {
+    return UserService.setCurrentUser(user);
   }
 
   getCurrentUser() {
-    let currentUser = ANONYMOUS_USER;
-    let user = localStorage.getItem(CURRENT_USER_STORAGE) || ANONYMOUS_USER;
-
-    try {
-      currentUser = JSON.parse(user);
-    } catch (error) {
-      currentUser = ANONYMOUS_USER;
-    }
-
-    return currentUser;
+    return UserService.getCurrentUser();
   }
 
   clearCurrentUser() {

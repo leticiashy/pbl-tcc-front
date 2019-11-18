@@ -3,14 +3,14 @@ const ValidationMixin = {
     const rules = ["required", "email", "maxValue", "minValue"].reduce(
       (acc, key) => {
         return Object.assign({}, acc, {
-          [key]: this[key]
+          [key]: this[key],
         });
       },
       {}
     );
 
     return {
-      rules: rules
+      rules: rules,
     };
   },
   methods: {
@@ -49,8 +49,8 @@ const ValidationMixin = {
             this.$t("GLOBAL_ERROR.MIN_VAL")
           );
       }
-    }
-  }
+    },
+  },
 };
 
 export default ValidationMixin;

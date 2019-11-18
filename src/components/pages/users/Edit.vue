@@ -80,9 +80,9 @@ export default {
         email: null,
         password: null,
         username: null,
-        name: null
+        name: null,
       },
-      errors: []
+      errors: [],
     };
   },
   computed: {
@@ -90,18 +90,18 @@ export default {
       return [
         this.validateRole("admin") && {
           value: "admin",
-          text: this.$t("GLOBAL.ROLE_ADMIN")
+          text: this.$t("GLOBAL.ROLE_ADMIN"),
         },
         this.validateRole("manager") && {
           value: "manager",
-          text: this.$t("GLOBAL.ROLE_MANAGER")
+          text: this.$t("GLOBAL.ROLE_MANAGER"),
         },
         this.validateRole("user") && {
           value: "user",
-          text: this.$t("GLOBAL.ROLE_USER")
-        }
+          text: this.$t("GLOBAL.ROLE_USER"),
+        },
       ];
-    }
+    },
   },
   methods: {
     onSubmit: function() {
@@ -128,8 +128,8 @@ export default {
             });
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

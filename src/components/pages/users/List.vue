@@ -27,7 +27,7 @@ import moment from "moment";
 export default {
   mixins: [ApiClientMixin],
   components: {
-    ActionGrid
+    ActionGrid,
   },
   mounted() {
     this.search();
@@ -36,7 +36,7 @@ export default {
     return {
       paramsReady: false,
       color: Material,
-      data: []
+      data: [],
     };
   },
   computed: {
@@ -49,7 +49,7 @@ export default {
           value: "name",
           customTemplate: item => {
             return `<a href="/users/${item.username}/show"><strong> ${item.name} </strong></a>`;
-          }
+          },
         },
         { sortable: false, text: this.$t("USERS.LABEL.ROLE"), value: "role" },
         {
@@ -59,7 +59,7 @@ export default {
             return moment(item.created_at)
               .utc()
               .format("DD/MM/YYYY HH:mm");
-          }
+          },
         },
         {
           value: "id",
@@ -72,7 +72,7 @@ export default {
           },
           click: item => {
             this.$router.push(`/users/${item.username}/edit`);
-          }
+          },
         },
         {
           value: "id",
@@ -85,18 +85,18 @@ export default {
             if (confirm("Tem certeza que deseja remover?")) {
               this.apiClient.delete(`users/${item.username}`).then(this.search);
             }
-          }
-        }
+          },
+        },
       ];
-    }
+    },
   },
   methods: {
     search: function() {
       this.apiClient.get("users").then(resp => {
         this.data = resp;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

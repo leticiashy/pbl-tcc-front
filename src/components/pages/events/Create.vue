@@ -48,6 +48,21 @@
           </v-flex>
 
           <v-flex>
+            <v-layout column>
+              <v-text-field
+                :label="$t('EVENTS.LABEL.DESCRIPTION')"
+                v-model="data.description"
+                :placeholder="$t('EVENTS.FORM.DESCRIPTIONPLACEHOLDER')"
+                name="description"
+                id="description"
+                auto-grow
+                clearable
+                counter
+              ></v-text-field>
+            </v-layout>
+          </v-flex>
+
+          <v-flex>
             <v-layout column justify-end>
               <label class="headline justify-end pa-1" style="display:flex">{{
                 $t("EVENTS.LABEL.ADDITIONAL_DATA")
@@ -83,12 +98,12 @@ export default {
   mixins: [ApiClientMixin, ValidationMixin],
   components: {
     FileUpload,
-    ChipCombobox
+    ChipCombobox,
   },
   data() {
     return {
       data: {},
-      areas: []
+      areas: [],
     };
   },
   mounted() {
@@ -100,7 +115,9 @@ export default {
     onSubmit: function() {
       if (this.$refs.eventForm.validate()) {
         if (this.data.areas) {
-          this.data.areas = this.data.areas.join(",");
+          this.data.areas = Array.isArray(this.data.areas)
+            ? this.data.areas.join(",")
+            : this.data.areas;
         } else {
           this.data.areas = "";
         }
@@ -109,8 +126,8 @@ export default {
           this.$router.push("/events/list");
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

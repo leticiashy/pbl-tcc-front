@@ -7,14 +7,14 @@ Vue.use(Vuetify, {
     themeVariations: ["primary", "secondary", "accent"],
     extra: {
       mainToolbar: {
-        color: "primary"
+        color: "primary",
       },
       sideToolbar: {},
       sideNav: "primary",
       mainNav: "primary lighten-1",
-      bodyBg: "#fafafa"
-    }
-  }
+      bodyBg: "#fafafa",
+    },
+  },
 });
 
 module.export = Vuetify;

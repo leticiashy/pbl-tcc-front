@@ -24,7 +24,7 @@ const store = new Vuex.Store({
         window.__appStore.commit("user/LOAD_DATA");
         window.__appStore.commit("language/LOAD_DATA");
       },
-      "application/LOAD_APPLICATION_END": function() {}
+      "application/LOAD_APPLICATION_END": function() {},
     }
   ),
   actions: Object.assign(
@@ -35,7 +35,7 @@ const store = new Vuex.Store({
     {}
   ),
   strict: debug,
-  plugins: debug ? [createLogger()] : []
+  plugins: debug ? [createLogger()] : [],
 });
 
 window.__appStore = store;

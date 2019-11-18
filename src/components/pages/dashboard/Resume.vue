@@ -1,34 +1,61 @@
 <template>
-  <div id="pageDashboard">
-    <header>
-      <div class="page-name">{{ $t("GLOBAL.RESUME_TITLE") }}</div>
-    </header>
-
+  <div id="pageDashboard" v-if="paramsReady">
     <v-container fluid grid-list-lg>
       <v-layout row wrap>
-        <v-flex
-          lg4
-          sm12
-          xs12
-          v-for="(item, index) in trendings"
-          :key="'c-trending' + index"
-        >
-          <circle-statistic
-            :title="item.subheading"
-            :sub-title="item.headline"
-            :caption="item.caption"
-            :icon="item.icon.label"
-            :color="item.linear.color"
-            :value="item.linear.value"
-          >
-          </circle-statistic>
-        </v-flex>
-        <v-flex lg12 sm12 xs12>
-          <simple-grid
-            :title="this.$t('GLOBAL.COMPANIES')"
-            :headers="headers"
-            :data="data"
+        <v-flex sm2 justify-end class="hidden-xs-only">
+          <linear-statistic
+            v-if="canShow(['user'])"
+            title="Participação por área"
+            :subtitle="`${$t('USERS.LABEL.RATE')}: ${userData.rate}`"
+            color="primary"
+            :items="userData.grades"
           />
+
+          <router-link to="/users/profile" class="justify-end">
+            Ver perfil completo >>
+          </router-link>
+        </v-flex>
+
+        <v-flex sm8 xs12>
+          <action-grid
+            title="Desafios em aberto"
+            :headers="dataHeaders"
+            :data="allEvent"
+            hide-headers
+            hide-actions
+          />
+
+          <br />
+
+          <action-grid
+            v-if="userData.eventsIn && userData.eventsIn.length > 0"
+            title="Eventos que está participando"
+            :headers="dataHeaders"
+            :data="userData.eventsIn"
+            hide-headers
+            hide-actions
+          />
+
+          <action-grid
+            v-if="userData.events && userData.events.length > 0"
+            title="Monitore seus eventos"
+            :headers="dataHeaders"
+            :data="userData.events"
+            hide-headers
+            hide-actions
+          />
+        </v-flex>
+
+        <v-flex sm2 class="hidden-xs-only">
+          <h2 class="headline">Referência rápida:</h2>
+
+          <a
+            v-for="area in areasAll"
+            :href="`events/area/${area}`"
+            v-bind:key="area"
+            style="display: block"
+            >- {{ area }}</a
+          >
         </v-flex>
       </v-layout>
     </v-container>
@@ -40,88 +67,62 @@ import Material from "vuetify/es5/util/colors";
 
 import ApiClientMixin from "@/mixins/ApiClientMixin";
 
-import SimpleGrid from "@/components/shared/list/SimpleGrid";
+import ActionGrid from "@/components/shared/list/ActionGrid";
+import LinearStatistic from "@/components/shared/statistic/LinearStatistic";
 
-import CircleStatistic from "@/components/shared/statistic/CircleStatistic";
+import UserService from "@/services/UserService";
 
 export default {
   mixins: [ApiClientMixin],
   components: {
-    SimpleGrid,
-    CircleStatistic
+    ActionGrid,
+    LinearStatistic,
   },
   mounted() {
-    setTimeout(() => {
+    const $context = this;
+
+    Promise.all([
+      $context.apiClient.get(`events`),
+      $context.apiClient.get(`areas`),
+      UserService.getData(),
+    ]).then(([eventsAll, areasAll, userData]) => {
+      this.allEvent = eventsAll;
+      this.areasAll = areasAll.data;
+      this.userData = userData;
+
       this.paramsReady = true;
-    }, 1000);
+
+      // this.areasUser = userData.grades;
+    });
   },
   data() {
     return {
-      paramsReady: false,
       color: Material,
-      data: []
+      paramsReady: false,
+      allEvent: [],
+      areasAll: [],
+      userData: [],
+      areasUser: {},
     };
   },
   computed: {
-    headers() {
+    dataHeaders: function() {
       return [
         {
-          sortable: false,
+          name: "name",
+          text: "Eventos",
           align: "left",
-          text: this.$t("GLOBAL.NAME"),
-          value: "name"
-        },
-        { sortable: false, text: this.$t("GLOBAL.ID"), value: "id" },
-        {
           sortable: false,
-          text: this.$t("GLOBAL.CREATED_AT"),
-          value: "created"
-        }
+          customTemplate: props => {
+            return `<a href="/events/${props.id}">${props.name}</a>`;
+          },
+          click: props => {
+            this.$router.push(`/events/${props.id}`);
+          },
+        },
       ];
     },
-    trendings() {
-      return this.paramsReady
-        ? [
-            {
-              subheading: this.$t("GLOBAL.EMAIL"),
-              percent: 15,
-              icon: {
-                label: "email",
-                color: "info"
-              },
-              linear: {
-                value: 15,
-                color: "info"
-              }
-            },
-            {
-              subheading: this.$t("GLOBAL.TASKS"),
-              percent: 90,
-              icon: {
-                label: "list",
-                color: "primary"
-              },
-              linear: {
-                value: 90,
-                color: "success"
-              }
-            },
-            {
-              subheading: this.$t("GLOBAL.ISSUES"),
-              percent: 100,
-              icon: {
-                label: "bug_report",
-                color: "primary"
-              },
-              linear: {
-                value: 100,
-                color: "error"
-              }
-            }
-          ]
-        : [];
-    }
-  }
+  },
 };
 </script>
 

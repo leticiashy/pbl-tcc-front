@@ -36,14 +36,14 @@ export default {
       type: Array,
       default: function() {
         return [];
-      }
-    }
+      },
+    },
   },
   methods: {
     handleDrawerToggle() {
       window.getApp.$emit("APP_DRAWER_TOGGLED");
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,6 +1,6 @@
 export const state = {
   currentUser: null,
-  currentEntity: null
+  currentEntity: null,
 };
 
 export const mutations = {
@@ -21,7 +21,7 @@ export const mutations = {
 
     localStorage.setItem("currentUser", "");
     localStorage.setItem("currentEntity", "");
-  }
+  },
 };
 
 export const actions = {};

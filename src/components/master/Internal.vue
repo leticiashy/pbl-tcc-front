@@ -12,8 +12,8 @@ import Layout from "@/components/shared/ui/Layout";
 
 export default {
   components: {
-    Layout
-  }
+    Layout,
+  },
 };
 </script>
 

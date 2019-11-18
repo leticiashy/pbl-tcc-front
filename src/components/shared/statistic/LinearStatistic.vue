@@ -14,7 +14,7 @@
       <div>
         <h5 class="sub-progress">{{ subtitle }}</h5>
       </div>
-      <hr />
+      <br />
       <div v-for="(item, index) in items" v-bind:key="index">
         <span class="caption">{{ item.subheading }}</span>
 
@@ -23,8 +23,6 @@
           height="5"
           :color="item.value > 5 ? 'green' : 'red'"
         ></v-progress-linear>
-
-        <hr />
       </div>
     </v-card-text>
   </v-card>
@@ -38,13 +36,13 @@ export default {
     subtitle: String,
     value: Number,
     color: String,
-    items: Array
+    items: Array,
   },
   computed: {
     caption() {
       return this.value + "% " + this.subtitle;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

@@ -18,19 +18,19 @@
 export default {
   props: {
     items: {
-      type: Array
+      type: Array,
     },
     value: {
-      type: Array
+      type: Array,
     },
     label: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
       select: this.value || [],
-      search: ""
+      search: "",
     };
   },
   watch: {
@@ -38,15 +38,15 @@ export default {
       immediate: true,
       handler: function(value) {
         this.$emit("input", value);
-      }
-    }
+      },
+    },
   },
   methods: {
     updateTags() {
       this.search = "";
       console.log(this.select);
-    }
-  }
+    },
+  },
 };
 </script>
 

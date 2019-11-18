@@ -26,42 +26,42 @@ const LanguagesMixin = {
           code: "en",
           locale: "en",
           title: this.$t("GLOBAL.LANG_ENGLISH"),
-          image: "um-round"
+          image: "um-round",
         },
         {
           code: "uk",
           locale: "en",
           title: this.$t("GLOBAL.LANG_ENGLISH_UK"),
-          image: "gb-round"
+          image: "gb-round",
         },
         {
           code: "pt",
           locale: "pt",
           title: this.$t("GLOBAL.LANG_PORTUGUESE"),
-          image: "br-round"
+          image: "br-round",
         },
         {
           code: "es",
           locale: "es",
           title: this.$t("GLOBAL.LANG_SPANISH"),
-          image: "es-round"
+          image: "es-round",
         },
         {
           code: "de",
           locale: "de",
           title: this.$t("GLOBAL.LANG_GERMAN"),
-          image: "de-round"
+          image: "de-round",
         },
         {
           code: "fr",
           locale: "fr",
           title: this.$t("GLOBAL.LANG_FRENCH"),
-          image: "fr-round"
-        }
+          image: "fr-round",
+        },
       ];
-    }
+    },
   },
-  methods: mapActions(["setGlobalLocale", "setActualLanguage"])
+  methods: mapActions(["setGlobalLocale", "setActualLanguage"]),
 };
 
 export default LanguagesMixin;

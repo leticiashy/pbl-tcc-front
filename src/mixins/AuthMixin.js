@@ -3,7 +3,7 @@ import AuthService from "@/services/AuthService";
 const AuthMixin = {
   data() {
     return {
-      authService: new AuthService()
+      authService: new AuthService(),
     };
   },
   computed: {},
@@ -38,8 +38,8 @@ const AuthMixin = {
         default:
           return true;
       }
-    }
-  }
+    },
+  },
 };
 
 export default AuthMixin;

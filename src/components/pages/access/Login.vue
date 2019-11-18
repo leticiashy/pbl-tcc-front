@@ -90,10 +90,10 @@ export default {
     return {
       login: {
         email: "",
-        password: ""
+        password: "",
       },
       returnUrl: this.$route.query.returnUrl || "/",
-      authService: new AuthService()
+      authService: new AuthService(),
     };
   },
   mounted() {
@@ -116,8 +116,8 @@ export default {
             }
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

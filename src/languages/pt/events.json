@@ -5,14 +5,17 @@
       "TITLE": "Edição de eventos",
       "PROFILE_TITLE": "Editar evento",
       "NAMEPLACEHOLDER": "Escreva o titulo do evento",
+      "DESCRIPTIONPLACEHOLDER": "Escreva uma descrição para apresentar o projeto",
       "ADD_TITLE": "Criação de eventos",
       "SUBMIT": "Gravar",
       "CANCEL": "Cancelar"
     },
     "LABEL": {
+      "LIST": "Listagem de eventos",
       "NAME": "Título",
       "STATUS": "Status",
       "INSCRIPTIONS": "Inscrições",
+      "DESCRIPTION": "Descrição",
       "CREATED_AT": "Criado em",
       "NEED_ADDITIONAL": "Requer atenção adicional",
       "AREAS": "Areas de domínio",

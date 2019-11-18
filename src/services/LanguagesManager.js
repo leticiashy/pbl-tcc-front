@@ -15,7 +15,7 @@ export default class LanguagesManager {
       i18n = new VueI18n({
         locale: currentLang,
         messages: languages,
-        silentTranslationWarn: true
+        silentTranslationWarn: true,
       });
 
       ctx.i18n = i18n;
