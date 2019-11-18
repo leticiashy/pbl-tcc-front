@@ -1,6 +1,6 @@
 <template>
   <div class="application-wrapper">
-    <v-container id="pageLogin" class="form-wrapper elevation-2">
+    <v-container class="form-wrapper elevation-2">
       <v-form id="app" class="form" ref="loginForm" @submit="onLogin">
         <v-container fluid>
           <v-layout column>
@@ -9,9 +9,6 @@
                 <h3 class="title-login title is-3 has-text-right">
                   {{ $t("LOGIN.FORM.TITLE") }}
                 </h3>
-              </v-flex>
-              <v-flex shrink>
-                <!-- <language-changer /> -->
               </v-flex>
             </v-layout>
 

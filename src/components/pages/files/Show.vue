@@ -1,5 +1,5 @@
 <template>
-  <div id="pageList">
+  <div id="showFiles">
     <v-container fluid grid-list-lg>
       <v-card class="mx-auto">
         <v-card-text>

@@ -1,6 +1,6 @@
 <template>
-  <div id="pageList">
-    <v-container id="pageLogin" class="form-wrapper elevation-2">
+  <div id="usersEdit">
+    <v-container class="form-wrapper elevation-2">
       <v-form id="app" class="form" ref="userForm" @submit.prevent="onSubmit">
         <v-container fluid>
           <v-layout column>

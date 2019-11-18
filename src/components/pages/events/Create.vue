@@ -1,5 +1,5 @@
 <template>
-  <v-container id="pageLogin">
+  <v-container>
     <v-form
       id="app"
       class="form form-wrapper elevation-2"

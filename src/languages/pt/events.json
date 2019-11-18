@@ -20,7 +20,9 @@
       "NEED_ADDITIONAL": "Requer atenção adicional",
       "AREAS": "Areas de domínio",
       "ADDITIONAL_DATA": "Adicione material de referência para os alunos",
-      "ADDITIONAL_DATA_INFO": "Material de apoio, clique para fazer o download"
+      "ADDITIONAL_DATA_INFO": "Material de apoio, clique para fazer o download",
+      "ACTIVE": "Status: Ativo",
+      "NON_ACTIVE": "Status: Terminado"
     }
   }
 }

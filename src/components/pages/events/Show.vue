@@ -1,5 +1,5 @@
 <template>
-  <div id="pageList">
+  <div id="showEvent">
     <v-container fluid grid-list-lg>
       <v-card class="mx-auto">
         <v-card-text>
@@ -11,28 +11,7 @@
             </v-flex>
 
             <v-flex pa-2>
-              <v-layout>
-                <v-flex>
-                  <div>
-                    Status: {{ event.active ? "Ativo" : "Terminado" }}
-                    <v-chip
-                      primary
-                      v-for="area in areasToList"
-                      v-bind:key="area"
-                      @click="navigateToArea(area)"
-                    >
-                      {{ area }}
-                    </v-chip>
-                    <br />
-                    <strong class="display-1 pa-2">{{ event.name }}</strong>
-                  </div>
-                </v-flex>
-                <v-flex shrink pa-2 v-if="event.need_additional">
-                  <v-icon size="60" class="pa-2" block color="red"
-                    >error</v-icon
-                  >
-                </v-flex>
-              </v-layout>
+              <event-top :event="event" />
 
               <event-card :event="event" />
             </v-flex>
@@ -46,12 +25,14 @@
 <script>
 import Material from "vuetify/es5/util/colors";
 import EventCard from "@/components/shared/card/Event";
+import EventTop from "@/components/shared/card/EventTop";
 import ApiClientMixin from "@/mixins/ApiClientMixin";
 
 export default {
   mixins: [ApiClientMixin],
   components: {
     EventCard,
+    EventTop,
   },
   mounted() {
     this.search();
@@ -64,11 +45,6 @@ export default {
       event: {},
     };
   },
-  computed: {
-    areasToList() {
-      return this.event.areas && this.event.areas.split(",");
-    },
-  },
   methods: {
     search: function() {
       let url = this.$route.params.id
@@ -77,9 +53,6 @@ export default {
       this.apiClient.get(url).then(resp => {
         this.event = resp;
       });
-    },
-    navigateToArea: function(name) {
-      this.$router.push(`/events/area/${name}`);
     },
   },
 };

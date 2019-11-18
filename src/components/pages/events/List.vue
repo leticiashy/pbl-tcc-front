@@ -1,5 +1,5 @@
 <template>
-  <div id="pageList">
+  <div id="listEvents">
     <v-container fluid grid-list-lg>
       <v-card class="mx-auto">
         <v-card-text>
@@ -19,30 +19,7 @@
                   v-show="event.active || ruleShowAll"
                 >
                   <template v-slot:header>
-                    <v-layout>
-                      <v-flex>
-                        <div>
-                          Status: {{ event.active ? "Ativo" : "Terminado" }}
-                          <v-chip
-                            primary
-                            v-for="area in areasToList(event.areas)"
-                            v-bind:key="area"
-                            @click="navigateToArea(area)"
-                          >
-                            {{ area }}
-                          </v-chip>
-                          <br />
-                          <strong class="display-1 pa-2">{{
-                            event.name
-                          }}</strong>
-                        </div>
-                      </v-flex>
-                      <v-flex shrink pa-2 v-if="event.need_additional">
-                        <v-icon size="60" class="pa-2" block color="red"
-                          >error</v-icon
-                        >
-                      </v-flex>
-                    </v-layout>
+                    <event-top :event="event" :navigateFn="navigateToArea" />
                   </template>
 
                   <event-card :event="event" />
@@ -57,14 +34,17 @@
 </template>
 
 <script>
+import "vuetify/dist/vuetify.min.css";
 import Material from "vuetify/es5/util/colors";
 import EventCard from "@/components/shared/card/Event";
+import EventTop from "@/components/shared/card/EventTop";
 import ApiClientMixin from "@/mixins/ApiClientMixin";
 
 export default {
   mixins: [ApiClientMixin],
   components: {
     EventCard,
+    EventTop,
   },
   mounted() {
     this.search();

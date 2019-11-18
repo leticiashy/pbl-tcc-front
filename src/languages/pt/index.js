@@ -6,5 +6,6 @@ export default Object.assign(
   require("./create-account.json"),
   require("./users.json"),
   require("./events.json"),
-  require("./files.json")
+  require("./files.json"),
+  require("./areas.json")
 );

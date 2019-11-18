@@ -1,6 +1,9 @@
 {
   "USERS": {
     "GRID": {},
+    "ACTION": {
+      "SHOW_PROFILE": "Ver perfil completo >>"
+    },
     "FORM": {
       "TITLE": "Edição de usuários",
       "PROFILE_TITLE": "Editar perfil",
@@ -25,7 +28,11 @@
       "PROFILE": "Perfil do usuário",
       "USERNAME": "Apelido",
       "RATE": "Nota geral",
-      "ROLE": "Perfil de acesso"
+      "ROLE": "Perfil de acesso",
+      "GRADES": "Participação por área",
+      "OPEN_EVENTS": "Desafios em aberto",
+      "EVENTS_IN": "Eventos que está participando",
+      "EVENTS_OWN": "Monitore seus eventos"
     }
   }
 }

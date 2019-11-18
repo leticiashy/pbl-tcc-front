@@ -1,7 +1,7 @@
 /* eslint-disable vue/no-side-effects-in-computed-properties */
 <template>
-  <div id="pageList">
-    <v-container id="pageLogin">
+  <div id="userProfile">
+    <v-container>
       <v-card class="mx-auto" v-if="view === 'show'">
         <v-card-text>
           <v-layout row wrap>

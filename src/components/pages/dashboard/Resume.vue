@@ -5,20 +5,20 @@
         <v-flex sm2 justify-end class="hidden-xs-only">
           <linear-statistic
             v-if="canShow(['user'])"
-            title="Participação por área"
+            :title="$t('USERS.LABEL.GRADES')"
             :subtitle="`${$t('USERS.LABEL.RATE')}: ${userData.rate}`"
             color="primary"
             :items="userData.grades"
           />
 
           <router-link to="/users/profile" class="justify-end">
-            Ver perfil completo >>
+            {{ $t("USERS.ACTION.SHOW_PROFILE") }}
           </router-link>
         </v-flex>
 
         <v-flex sm8 xs12>
           <action-grid
-            title="Desafios em aberto"
+            :title="$t('USERS.LABEL.OPEN_EVENTS')"
             :headers="dataHeaders"
             :data="allEvent"
             hide-headers
@@ -29,7 +29,7 @@
 
           <action-grid
             v-if="userData.eventsIn && userData.eventsIn.length > 0"
-            title="Eventos que está participando"
+            :title="$t('USERS.LABEL.EVENTS_IN')"
             :headers="dataHeaders"
             :data="userData.eventsIn"
             hide-headers
@@ -38,7 +38,7 @@
 
           <action-grid
             v-if="userData.events && userData.events.length > 0"
-            title="Monitore seus eventos"
+            :title="$t('USERS.LABEL.EVENTS_OWN')"
             :headers="dataHeaders"
             :data="userData.events"
             hide-headers
@@ -47,7 +47,7 @@
         </v-flex>
 
         <v-flex sm2 class="hidden-xs-only">
-          <h2 class="headline">Referência rápida:</h2>
+          <h2 class="headline">{{ $t("AREAS.LABEL.QUICK_REFERENCE") }}</h2>
 
           <a
             v-for="area in areasAll"
@@ -84,15 +84,14 @@ export default {
     Promise.all([
       $context.apiClient.get(`events`),
       $context.apiClient.get(`areas`),
-      UserService.getData(),
-    ]).then(([eventsAll, areasAll, userData]) => {
-      this.allEvent = eventsAll;
-      this.areasAll = areasAll.data;
-      this.userData = userData;
+    ]).then(([eventsAll, areasAll]) => {
+      return UserService.getData().then(userData => {
+        this.allEvent = eventsAll;
+        this.areasAll = areasAll.data;
+        this.userData = userData;
 
-      this.paramsReady = true;
-
-      // this.areasUser = userData.grades;
+        this.paramsReady = true;
+      });
     });
   },
   data() {

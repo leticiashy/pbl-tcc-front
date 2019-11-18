@@ -88,7 +88,7 @@ const router = new Router({
             },
             {
               path: "/events/area/:areaName/files",
-              name: "EventByArea",
+              name: "FilesByArea",
               component: () => import("@/components/pages/files/Show"),
             },
             {
