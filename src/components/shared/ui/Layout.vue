@@ -62,7 +62,7 @@ export default {
           title: this.$t("GLOBAL.USER_SECTION"),
           action: "list",
           items: [
-            this.canShow(["admin", "manager"]) && {
+            this.canShow(["admin"]) && {
               path: "/users/list",
               text: this.$t("GLOBAL.LIST_USER"),
             },
@@ -91,7 +91,7 @@ export default {
           title: this.$t("GLOBAL.ACCOUNT_SECTION"),
           action: "account_circle",
           items: [
-            this.canShow(["admin", "manager", "user"]) && {
+            this.canShow(["user"]) && {
               action: "account_circle",
               path: "/users/profile",
               text: this.$t("GLOBAL.PROFILE_USER"),

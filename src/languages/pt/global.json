@@ -42,6 +42,8 @@
     "UPLOAD_DEFAULT_MESSAGE": "<h2>Arraste ou clique para adicionar novos arquivos.</h2><br /> Para enviar múltiplos arquivos, por favor compacte em um .zip ou .rar",
     "UPLOAD_WAITING_MESSAGE": "Vocês está enviando $FILECOUNT arquivo(s)",
     "UPLOAD_NEW": "Enviar novo arquivo",
+    "AUDIT_FINISH": "Verificação concluída",
+    "ADD_REQUISITE": "Adicionar requisito",
     "HTTP": {
       "ACCESS_DENIED_MESSAGE": "Ocorreu um erro durante a autorização",
       "SESSION_EXPIRED_MESSAGE": "Acesso expirado, tente novamente",

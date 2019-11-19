@@ -2,9 +2,8 @@
   <div id="pageDashboard" v-if="paramsReady">
     <v-container fluid grid-list-lg>
       <v-layout row wrap>
-        <v-flex sm2 justify-end class="hidden-xs-only">
+        <v-flex sm2 justify-end class="hidden-xs-only" v-if="canShow(['user'])">
           <linear-statistic
-            v-if="canShow(['user'])"
             :title="$t('USERS.LABEL.GRADES')"
             :subtitle="`${$t('USERS.LABEL.RATE')}: ${userData.rate}`"
             color="primary"
@@ -14,6 +13,22 @@
           <router-link to="/users/profile" class="justify-end">
             {{ $t("USERS.ACTION.SHOW_PROFILE") }}
           </router-link>
+        </v-flex>
+
+        <v-flex
+          sm2
+          justify-end
+          class="hidden-xs-only"
+          v-if="canShow(['manager'])"
+        >
+          <action-grid
+            v-if="userData.events && userData.events.length > 0"
+            :title="$t('USERS.LABEL.EVENTS_OWN')"
+            :headers="dataHeaders"
+            :data="userData.events"
+            hide-headers
+            hide-actions
+          />
         </v-flex>
 
         <v-flex sm8 xs12>
@@ -32,15 +47,6 @@
             :title="$t('USERS.LABEL.EVENTS_IN')"
             :headers="dataHeaders"
             :data="userData.eventsIn"
-            hide-headers
-            hide-actions
-          />
-
-          <action-grid
-            v-if="userData.events && userData.events.length > 0"
-            :title="$t('USERS.LABEL.EVENTS_OWN')"
-            :headers="dataHeaders"
-            :data="userData.events"
             hide-headers
             hide-actions
           />

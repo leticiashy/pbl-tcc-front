@@ -26,6 +26,11 @@
 <script>
 export default {
   props: ["event", "navigateFn"],
+  computed: {
+    areasToList: function() {
+      return this.event.areas && this.event.areas.split(",");
+    },
+  },
   methods: {
     navigateToArea: function(name) {
       if (this.navigateFn) {

@@ -22,8 +22,6 @@ import ApiClientMixin from "@/mixins/ApiClientMixin";
 
 import ActionGrid from "@/components/shared/list/ActionGrid";
 
-import moment from "moment";
-
 export default {
   mixins: [ApiClientMixin],
   components: {
@@ -53,15 +51,6 @@ export default {
         },
         { sortable: false, text: this.$t("USERS.LABEL.ROLE"), value: "role" },
         {
-          text: this.$t("USERS.LABEL.CREATED_AT"),
-          value: "created_at",
-          customTemplate: item => {
-            return moment(item.created_at)
-              .utc()
-              .format("DD/MM/YYYY HH:mm");
-          },
-        },
-        {
           value: "id",
           customTemplate: item => {
             return this.validateRole(item.role)
@@ -77,7 +66,7 @@ export default {
         {
           value: "id",
           customTemplate: item => {
-            return this.validateRole(item.role)
+            return this.validateRole(item.role) && this.canShow(["admin"])
               ? `<a href="#"> ${this.$t("GLOBAL.DELETE")} </a>`
               : "";
           },

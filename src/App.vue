@@ -5,7 +5,7 @@
     <div class="response-wrapper" v-if="responses.length > 0">
       <v-alert
         v-for="(response, index) in responses"
-        v-bind:key="response.msg"
+        v-bind:key="`${response.msg}-${index}`"
         border="top"
         :color="
           `${

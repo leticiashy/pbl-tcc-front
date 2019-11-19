@@ -22,7 +22,7 @@
                     <event-top :event="event" :navigateFn="navigateToArea" />
                   </template>
 
-                  <event-card :event="event" />
+                  <event-card :event="event" :refreshFn="search" />
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-flex>

@@ -13,7 +13,7 @@
             <v-flex pa-2>
               <event-top :event="event" />
 
-              <event-card :event="event" />
+              <event-card :event="event" :refreshFn="search" />
             </v-flex>
           </v-layout>
         </v-card-text>
@@ -43,6 +43,7 @@ export default {
       ruleShowAll: false,
       color: Material,
       event: {},
+      requisites: [],
     };
   },
   methods: {

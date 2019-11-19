@@ -12,6 +12,12 @@
     },
     "LABEL": {
       "LIST": "Listagem de eventos",
+      "SHOW": "Visualização do evento",
+      "AUDIT_INFO": "Para iniciar o evento, verifique se os alunos estão corretos",
+      "REQUISITES_INFO": "Escolha os requisitos do evento",
+      "WEIGHT": "Peso",
+      "END_DATE": "Data de término do evento",
+      "DATE_INFO": "Dados de entrega",
       "NAME": "Título",
       "STATUS": "Status",
       "INSCRIPTIONS": "Inscrições",
